@@ -6,54 +6,56 @@ const M = { display: "flex", alignItems: "center", gap: 5, color: "#999", fontSi
 const BP = { padding: "9px 16px", background: A, color: "#fff", border: "none", borderRadius: 8, fontWeight: 600, cursor: "pointer", fontSize: 12, width: "100%" };
 const BO = { padding: "9px 16px", border: `1.5px solid ${A}`, color: A, background: "#fff", borderRadius: 8, fontWeight: 600, cursor: "pointer", fontSize: 12, width: "100%" };
 
-const groups = [
-  { id: 1, name: "写真部", n: 24, color: "#E89B3C" },
-  { id: 2, name: "読書会", n: 16, color: "#8B7355" },
-  { id: 3, name: "ハイキング同好会", n: 18, color: "#6B8E23" },
-  { id: 4, name: "音楽部", n: 20, color: "#9370DB" },
-  { id: 5, name: "料理クラブ", n: 15, color: "#DC143C" },
-];
 const evts = [
-  { id: 1, g: "写真部", t: "夕焼け撮影会", d: "04/25", tm: "17:00", l: "海浜公園" },
-  { id: 2, g: "ハイキング同好会", t: "春の登山", d: "04/28", tm: "06:00", l: "富士山麓" },
-  { id: 3, g: "読書会", t: "5月読書会", d: "05/05", tm: "14:00", l: "カフェ・ブックス" },
-  { id: 4, g: "音楽部", t: "アコースティックライブ", d: "05/10", tm: "19:00", l: "駅前ホール" },
-  { id: 5, g: "料理クラブ", t: "イタリアン料理会", d: "05/12", tm: "11:00", l: "コミュニティキッチン" },
-  { id: 6, g: "写真部", t: "夜景撮影ツアー", d: "05/17", tm: "20:00", l: "東京タワー周辺" },
-  { id: 7, g: "ハイキング同好会", t: "新緑トレッキング", d: "05/24", tm: "07:00", l: "奥多摩" },
+  { id: 1, g: "フットサル部", t: "練習試合", start: "2026-04-25T17:00", end: "2026-04-25T19:00", l: "市民体育館グラウンド", ds: "動きやすい服装と室内シューズを持ってきてください。見学だけでも大丈夫です。" },
+  { id: 2, g: "バスケ部", t: "週末練習", start: "2026-04-28T10:00", end: "2026-04-28T12:00", l: "第2体育館" },
+  { id: 3, g: "麻雀部", t: "月例卓会", start: "2026-05-05T14:00", end: "2026-05-05T18:00", l: "コミュニティルーム", ds: "4人1卓で回します。人数を確定させたいので、参加できるかどうか必ず回答してください。初めての方には最初にルール説明をします。", rsvp: "yesno" },
+  { id: 4, g: "ダンス部", t: "振り入れ練習", start: "2026-05-10T19:00", end: "2026-05-10T21:00", l: "スタジオA" },
+  { id: 5, g: "ダーツ部", t: "部内トーナメント", start: "2026-05-12T19:00", end: "2026-05-12T21:30", l: "ダーツバー Bull" },
+  { id: 6, g: "ゲーム部", t: "対戦会", start: "2026-05-17T20:00", end: "2026-05-17T22:30", l: "会議室C", st: "下書き" },
+  { id: 7, g: "バレー部", t: "合同練習", start: "2026-05-24T09:00", end: "2026-05-24T12:00", l: "市民体育館" },
+  { id: 8, g: "フットサル部", t: "5月フットサル大会", start: "2026-05-02T13:00", end: "2026-05-02T17:00", l: "河川敷グラウンド", ds: "他部署チームを招いての交流戦です。チーム分けの都合があるので参加可否を早めにお願いします。飲み物はこちらで用意します。", rsvp: "yesno" },
 ];
 const acts = [
-  { id: 1, g: "写真部", t: "春の撮影会", ds: "桜を撮りに行きました", d: "04/10", img: "https://images.unsplash.com/photo-1522383225653-ed111181a951?w=600&h=400&fit=crop", p: 12,
-    detail: "桜の名所を巡りながら、メンバーそれぞれのカメラで春の瞬間を切り取りました。初心者向けの構図レクチャーもあり、参加者全員が素敵な一枚を撮れました。次回は夏の花火を予定しています！",
-    photos: ["https://images.unsplash.com/photo-1522383225653-ed111181a951?w=300&h=300&fit=crop", "https://images.unsplash.com/photo-1462275646964-a0e3c11f18a6?w=300&h=300&fit=crop", "https://images.unsplash.com/photo-1490750967868-88aa4f44baee?w=300&h=300&fit=crop"],
+  { id: 1, g: "フットサル部", t: "春の練習試合", ds: "他部署チームと対戦しました", d: "04/10", img: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&h=400&fit=crop", p: 12,
+    detail: "他部署の有志チームと5人制で3試合。前半は動きが硬かったものの、後半は連携が噛み合って逆転できました。運動不足の解消にもちょうどよく、次回は6月に開催予定です。",
+    photos: ["https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=300&h=300&fit=crop"],
     members: ["山田太郎", "佐藤花子", "田中次郎", "鈴木美咲"] },
-  { id: 2, g: "読書会", t: "月例読書会", ds: "今月のテーマ本について議論しました", d: "04/08", img: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=600&h=400&fit=crop", p: 8,
-    detail: "今月は村上春樹の作品をテーマに語り合いました。様々な解釈が飛び交い、3時間があっという間に過ぎました。来月のテーマ本も決定済みです。新しい参加者も大歓迎！",
-    photos: ["https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=300&h=300&fit=crop", "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=300&h=300&fit=crop"],
+  { id: 2, g: "ゲーム部", t: "月例ゲーム会", ds: "ボードゲームと対戦ゲームで盛り上がりました", d: "04/08", img: "https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?w=600&h=400&fit=crop", p: 8,
+    detail: "前半はカタンとアズール、後半は対戦ゲームで総当たり戦。初参加の人もすぐに馴染んでいました。ルール説明役がいるので未経験でも問題なく遊べます。",
+    photos: ["https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?w=300&h=300&fit=crop"],
     members: ["佐藤花子", "鈴木美咲", "高橋健太"] },
 ];
-const mems = [
+const users = [
   { id: 1, nm: "山田太郎", av: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop" },
   { id: 2, nm: "佐藤花子", av: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" },
   { id: 3, nm: "田中次郎", av: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop" },
   { id: 4, nm: "鈴木美咲", av: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop" },
+  { id: 5, nm: "高橋健太" },
+  { id: 6, nm: "中村優子" },
+  { id: 7, nm: "小林大輔" },
+  { id: 8, nm: "渡辺さくら" },
 ];
+const ME = 1;
+const findUser = (id) => users.find(u => u.id === id) || { id, nm: "?" };
 const grpCards = [
-  { id: 1, name: "写真部", ds: "写真が好きな人が集まるグループです。", n: 24, color: "#E89B3C", cat: "アウトドア", img: "https://images.unsplash.com/photo-1452780212940-6f5c0d14d848?w=400&h=200&fit=crop" },
-  { id: 2, name: "読書会", ds: "月に一度、本を読んで語り合うグループです。", n: 16, color: "#8B7355", cat: "インドア", img: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=400&h=200&fit=crop" },
-  { id: 3, name: "ハイキング同好会", ds: "自然を楽しみながら健康的に過ごすグループ。", n: 18, color: "#6B8E23", cat: "アウトドア", img: "https://images.unsplash.com/photo-1551632811-561732d1e306?w=400&h=200&fit=crop" },
-  { id: 4, name: "音楽部", ds: "音楽を楽しむグループです。楽器演奏や鑑賞会を開催。", n: 20, color: "#9370DB", cat: "インドア", img: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=400&h=200&fit=crop" },
-  { id: 5, name: "料理クラブ", ds: "新しいレシピに挑戦したり食事会を開催。", n: 15, color: "#DC143C", cat: "趣味", img: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=400&h=200&fit=crop" },
-  { id: 6, name: "フットサル部", ds: "毎週末フットサルを楽しむグループです。", n: 22, color: "#2E8B57", cat: "アウトドア", img: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400&h=200&fit=crop" },
-  { id: 7, name: "映画鑑賞会", ds: "週末に映画を観て語り合うグループです。", n: 12, color: "#4682B4", cat: "インドア", img: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=400&h=200&fit=crop" },
-  { id: 8, name: "ヨガサークル", ds: "心と体をリフレッシュ。初心者歓迎。", n: 14, color: "#DA70D6", cat: "インドア", img: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=400&h=200&fit=crop" },
-  { id: 9, name: "ボードゲーム部", ds: "カタンやアズールなど毎週遊んでいます。", n: 19, color: "#FF6347", cat: "趣味", img: "https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?w=400&h=200&fit=crop" },
+  { id: 1, name: "フットサル部", since: "2023-05-12", ds: "毎週末フットサルを楽しむグループです。", members: [1, 2, 3, 4, 5, 6], admins: [1, 2], color: "#2E8B57", cat: "アウトドア", img: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400&h=200&fit=crop" },
+  { id: 2, name: "ダンス部", since: "2024-04-08", ds: "振り入れから発表会まで、みんなで踊るグループです。", members: [2, 4, 7, 8], admins: [4], color: "#DA70D6", cat: "インドア" },
+  { id: 3, name: "ダーツ部", since: "2024-02-20", ds: "仕事帰りにダーツを投げています。初心者歓迎。", members: [3, 5, 7], admins: [3], color: "#DC143C", cat: "趣味" },
+  { id: 4, name: "麻雀部", since: "2023-09-15", ds: "月に数回集まって卓を囲んでいます。", members: [1, 3, 6, 7, 8], admins: [7], color: "#6B8E23", cat: "趣味" },
+  { id: 5, name: "バスケ部", since: "2023-07-03", ds: "体育館を借りて練習と試合をしています。", members: [1, 2, 5, 6], admins: [5], color: "#E89B3C", cat: "アウトドア" },
+  { id: 6, name: "バレー部", since: "2024-01-22", ds: "経験者も未経験者も一緒に楽しむバレーボール部。", members: [2, 4, 6, 8], admins: [2], color: "#4682B4", cat: "アウトドア" },
+  { id: 7, name: "ゲーム部", since: "2024-02-14", ds: "対戦ゲームからボードゲームまで幅広く遊んでいます。", members: [1, 3, 4, 7, 8], admins: [1, 7], color: "#9370DB", cat: "趣味", img: "https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?w=400&h=200&fit=crop" },
 ];
+const grpN = (g) => (g.members || []).length;
+const isAdmin = (grpName, userId) => (findGrpRaw(grpName).admins || []).includes(userId);
+const findGrpRaw = (name) => grpCards.find(g => g.name === name) || {};
+const groups = grpCards.map(({ id, name, members, color }) => ({ id, name, n: members.length, color }));
 const prof = {
-  name: "山田太郎", bio: "写真が好きです。週末は撮影に出かけています。", loc: "東京", joined: "2025-01-15",
+  name: "山田太郎", bio: "体を動かすのが好きです。週末はだいたいコートにいます。", loc: "東京", joined: "2025-01-15",
   hometown: "大阪府", joinedCompany: "2022年4月", department: "第◯技術部",
   av: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop",
-  grps: [{ name: "写真部", color: "#E89B3C" }, { name: "ハイキング同好会", color: "#6B8E23" }, { name: "音楽部", color: "#9370DB" }],
+  grps: [{ name: "フットサル部", color: "#2E8B57" }, { name: "バスケ部", color: "#E89B3C" }, { name: "ゲーム部", color: "#9370DB" }],
   phs: [
     "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=300&fit=crop",
     "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=300&h=300&fit=crop",
@@ -163,21 +165,22 @@ function PostCard({ post, onDelete, onUpdate }) {
   );
 }
 
-function HomePage({ go, onSelectAct }) {
+function HomePage({ go, onSelectAct, events, posts, setPosts, openGrp, onRsvp, rsvps }) {
   const [showAll, setShowAll] = useState(false);
   const [showPost, setShowPost] = useState(false);
   const [postText, setPostText] = useState("");
   const [recruiting, setRecruiting] = useState(false);
   const [interested, setInterested] = useState(false);
-  const [posts, setPosts] = useState([]);
-  const visibleEvts = showAll ? evts : evts.slice(0, 3);
+  const canPost = false; // シェア機能を一旦非表示（戻すときは myAdminGrps().length > 0 に）
+  const pubEvts = events.filter(isPublic);
+  const visibleEvts = showAll ? pubEvts : pubEvts.slice(0, 3);
   return (
     <div style={{ padding: "14px 16px", paddingBottom: 20 }}>
       <div style={{ marginBottom: 16 }}>
         <div style={{ fontSize: 12, fontWeight: 700, color: "#555", marginBottom: 10 }}>ホットなボド活</div>
         <div style={{ display: "flex", gap: 8, overflowX: "auto", scrollbarWidth: "none", paddingBottom: 4 }}>
           {groups.map(g => (
-            <button key={g.id} onClick={() => go("detail")} style={{ display: "flex", alignItems: "center", gap: 6, padding: "6px 12px", borderRadius: 999, border: "1px solid #e5e7eb", background: "#fff", cursor: "pointer", whiteSpace: "nowrap", fontSize: 12, fontWeight: 500, flexShrink: 0 }}>
+            <button key={g.id} onClick={() => openGrp(g.name)} style={{ display: "flex", alignItems: "center", gap: 6, padding: "6px 12px", borderRadius: 999, border: "1px solid #e5e7eb", background: "#fff", cursor: "pointer", whiteSpace: "nowrap", fontSize: 12, fontWeight: 500, flexShrink: 0 }}>
               <span style={{ width: 8, height: 8, borderRadius: "50%", background: g.color }} />{g.name}
             </button>
           ))}
@@ -190,31 +193,32 @@ function HomePage({ go, onSelectAct }) {
             <span style={{ fontSize: 11, color: A, fontWeight: 600 }}>{e.g}</span>
             <div style={{ fontWeight: 700, fontSize: 15, color: "#111", marginTop: 2 }}>{e.t}</div>
             <div style={{ display: "flex", gap: 12, marginTop: 8 }}>
-              <span style={M}><CalI />{e.d} {e.tm}</span>
+              <span style={M}><CalI />{fmtDate(e.start)} {tRange(e)}</span>
               <span style={M}><PinI />{e.l}</span>
             </div>
-            <button style={{ ...BP, marginTop: 10 }}>参加する</button>
+            <EvtNote e={e} />
+            <EvtActions e={e} onRsvp={onRsvp} rsvps={rsvps} />
           </div>
         ))}
       </div>
-      {evts.length > 3 && (
+      {pubEvts.length > 3 && (
         <button onClick={() => setShowAll(!showAll)} style={{ width: "100%", padding: "10px 0", background: "none", border: "1px solid #e5e7eb", borderRadius: 8, color: A, fontWeight: 600, fontSize: 13, cursor: "pointer", marginBottom: 20, display: "flex", alignItems: "center", justifyContent: "center", gap: 4 }}>
-          {showAll ? "閉じる" : `もっと見る（残り${evts.length - 3}件）`}
+          {showAll ? "閉じる" : `もっと見る（残り${pubEvts.length - 3}件）`}
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ transform: showAll ? "rotate(180deg)" : "none", transition: "transform 0.2s" }}><path d="m6 9 6 6 6-6"/></svg>
         </button>
       )}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
         <h3 style={{ fontSize: 16, fontWeight: 700, color: "#111", margin: 0 }}>みんなのボド活</h3>
-        <button onClick={() => setShowPost(!showPost)} style={{ display: "flex", alignItems: "center", gap: 4, padding: "6px 12px", borderRadius: 999, border: "none", background: showPost ? "#f3f3f3" : A, color: showPost ? "#888" : "#fff", fontSize: 12, fontWeight: 600, cursor: "pointer" }}>
+        {canPost && <button onClick={() => setShowPost(!showPost)} style={{ display: "flex", alignItems: "center", gap: 4, padding: "6px 12px", borderRadius: 999, border: "none", background: showPost ? "#f3f3f3" : A, color: showPost ? "#888" : "#fff", fontSize: 12, fontWeight: 600, cursor: "pointer" }}>
           {showPost ? (
             <><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>閉じる</>
           ) : (
             <><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M4 12h16"/><path d="M12 4v16"/></svg>シェア</>
           )}
-        </button>
+        </button>}
       </div>
       {/* Post form - X style */}
-      {showPost && (
+      {canPost && showPost && (
         <div style={{ marginBottom: 12, borderBottom: "1px solid #e5e7eb" }}>
           <div style={{ display: "flex", gap: 12, padding: "12px 0" }}>
             <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop" alt="" style={{ width: 40, height: 40, borderRadius: "50%", objectFit: "cover", flexShrink: 0 }} />
@@ -289,7 +293,7 @@ function HomePage({ go, onSelectAct }) {
   );
 }
 
-function GrpsPage({ go }) {
+function GrpsPage({ go, openGrp }) {
   const [q, setQ] = useState("");
   const [cat, setCat] = useState("すべて");
   const tabs = ["すべて", "アウトドア", "インドア", "趣味", "その他"];
@@ -335,9 +339,9 @@ function GrpsPage({ go }) {
       ) : (
         <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
           {filtered.map(g => (
-            <button key={g.id} onClick={() => go("detail")} style={{ ...C, overflow: "hidden", border: "none", cursor: "pointer", textAlign: "left", width: "100%" }}>
+            <button key={g.id} onClick={() => openGrp(g.name)} style={{ ...C, overflow: "hidden", border: "none", cursor: "pointer", textAlign: "left", width: "100%" }}>
               <div style={{ position: "relative", height: 130 }}>
-                <img src={g.img} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                <Cover g={g} />
                 <span style={{ position: "absolute", top: 8, left: 8, width: 12, height: 12, borderRadius: "50%", border: "2px solid #fff", background: g.color }} />
               </div>
               <div style={{ padding: 14 }}>
@@ -345,7 +349,7 @@ function GrpsPage({ go }) {
                   <span style={{ fontSize: 16, fontWeight: 700, color: "#111" }}>{g.name}</span><ChI />
                 </div>
                 <div style={{ color: "#888", fontSize: 12, marginBottom: 8, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{g.ds}</div>
-                <span style={{ ...M, fontSize: 12 }}><UsrI s={12} />{g.n}人</span>
+                <span style={{ ...M, fontSize: 12 }}><UsrI s={12} />{grpN(g)}人</span>
               </div>
             </button>
           ))}
@@ -355,25 +359,15 @@ function GrpsPage({ go }) {
   );
 }
 
-function AdminPage({ go }) {
+function AdminPage({ go, events, setEvents, grp, rsvps }) {
   const [tab, setTab] = useState("group");
-  const [gName, setGName] = useState("写真部");
-  const [gDesc, setGDesc] = useState("写真が好きな人が集まるグループです。週末に撮影会を開催したり、作品を共有したりしています。");
-  const [evtList, setEvtList] = useState([
-    { id: 1, t: "夕焼け撮影会", d: "04/25", tm: "17:00", l: "海浜公園", st: "公開中" },
-    { id: 2, t: "機材交換会", d: "05/02", tm: "15:00", l: "コミュニティセンター", st: "公開中" },
-    { id: 3, t: "夜景撮影ツアー", d: "05/17", tm: "20:00", l: "東京タワー周辺", st: "下書き" },
-  ]);
+  const [gName, setGName] = useState(findGrp(grp).name);
+  const [gDesc, setGDesc] = useState(findGrp(grp).ds);
+  const GRP = findGrp(grp).name;
+  const evtList = events.filter(e => e.g === GRP).sort(byStart);
   const [showNewEvt, setShowNewEvt] = useState(false);
-  const [newEvt, setNewEvt] = useState({ t: "", d: "", tm: "", l: "" });
   const [saved, setSaved] = useState(false);
-
-  const addEvt = () => {
-    if (!newEvt.t.trim()) return;
-    setEvtList([...evtList, { id: Date.now(), ...newEvt, st: "下書き" }]);
-    setNewEvt({ t: "", d: "", tm: "", l: "" });
-    setShowNewEvt(false);
-  };
+  const [openRsvp, setOpenRsvp] = useState(null);
 
   return (
     <div style={{ paddingBottom: 20 }}>
@@ -394,7 +388,7 @@ function AdminPage({ go }) {
           {/* Cover image */}
           <div style={{ ...C, overflow: "hidden" }}>
             <div style={{ position: "relative", height: 120 }}>
-              <img src="https://images.unsplash.com/photo-1452780212940-6f5c0d14d848?w=800&h=300&fit=crop" alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+              <Cover g={findGrp(grp)} fs={16} />
               <button style={{ position: "absolute", bottom: 8, right: 8, background: "rgba(0,0,0,0.5)", border: "none", borderRadius: 8, color: "#fff", padding: "6px 12px", fontSize: 11, fontWeight: 600, cursor: "pointer", display: "flex", alignItems: "center", gap: 4 }}>
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
                 変更
@@ -442,22 +436,9 @@ function AdminPage({ go }) {
           </button>
           {/* New event form */}
           {showNewEvt && (
-            <div style={{ ...C, padding: 14, display: "flex", flexDirection: "column", gap: 10 }}>
-              <input type="text" placeholder="イベント名" value={newEvt.t} onChange={e => setNewEvt({ ...newEvt, t: e.target.value })}
-                style={{ width: "100%", padding: "10px 12px", borderRadius: 8, border: "1px solid #e5e7eb", fontSize: 13, outline: "none", boxSizing: "border-box" }} />
-              <div style={{ display: "flex", gap: 8 }}>
-                <input type="text" placeholder="日付 (MM/DD)" value={newEvt.d} onChange={e => setNewEvt({ ...newEvt, d: e.target.value })}
-                  style={{ flex: 1, padding: "10px 12px", borderRadius: 8, border: "1px solid #e5e7eb", fontSize: 13, outline: "none", boxSizing: "border-box" }} />
-                <input type="text" placeholder="時間 (HH:MM)" value={newEvt.tm} onChange={e => setNewEvt({ ...newEvt, tm: e.target.value })}
-                  style={{ flex: 1, padding: "10px 12px", borderRadius: 8, border: "1px solid #e5e7eb", fontSize: 13, outline: "none", boxSizing: "border-box" }} />
-              </div>
-              <input type="text" placeholder="場所" value={newEvt.l} onChange={e => setNewEvt({ ...newEvt, l: e.target.value })}
-                style={{ width: "100%", padding: "10px 12px", borderRadius: 8, border: "1px solid #e5e7eb", fontSize: 13, outline: "none", boxSizing: "border-box" }} />
-              <div style={{ display: "flex", gap: 8 }}>
-                <button onClick={() => setShowNewEvt(false)} style={{ ...BO, flex: 1 }}>キャンセル</button>
-                <button onClick={addEvt} style={{ ...BP, flex: 1, opacity: newEvt.t.trim() ? 1 : 0.5 }}>作成</button>
-              </div>
-            </div>
+            <EvtForm fixedGrp={GRP}
+              onSubmit={(ev) => { setEvents([...events, ev].sort(byStart)); setShowNewEvt(false); }}
+              onCancel={() => setShowNewEvt(false)} />
           )}
           {/* Event list */}
           {evtList.map(e => (
@@ -471,23 +452,29 @@ function AdminPage({ go }) {
                       color: e.st === "公開中" ? "#4CAF50" : "#FF9800" }}>{e.st}</span>
                   </div>
                   <div style={{ display: "flex", gap: 10 }}>
-                    <span style={M}><CalI />{e.d} {e.tm}</span>
+                    <span style={M}><CalI />{fmtDate(e.start)} {tRange(e)}</span>
                     <span style={M}><PinI />{e.l}</span>
+                    <span style={M}>{e.rsvp === "yesno" ? "可否を確認" : "参加ボタン"}</span>
                   </div>
+                  <button onClick={() => setOpenRsvp(openRsvp === e.id ? null : e.id)}
+                    style={{ marginTop: 8, background: "none", border: "none", padding: 0, cursor: "pointer", fontSize: 11, color: A, fontWeight: 600 }}>
+                    {openRsvp === e.id ? "回答を隠す" : `回答を見る（参加 ${tally(rsvps, e).yes.length}）`}
+                  </button>
                 </div>
                 <div style={{ display: "flex", gap: 4 }}>
                   {/* Toggle status */}
-                  <button onClick={() => setEvtList(evtList.map(x => x.id === e.id ? { ...x, st: x.st === "公開中" ? "下書き" : "公開中" } : x))}
+                  <button onClick={() => setEvents(events.map(x => x.id === e.id ? { ...x, st: isPublic(x) ? "下書き" : "公開中" } : x))}
                     style={{ background: "none", border: "none", cursor: "pointer", color: "#bbb", padding: 4 }}>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
                   </button>
                   {/* Delete */}
-                  <button onClick={() => setEvtList(evtList.filter(x => x.id !== e.id))}
+                  <button onClick={() => setEvents(events.filter(x => x.id !== e.id))}
                     style={{ background: "none", border: "none", cursor: "pointer", color: "#e55", padding: 4 }}>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
                   </button>
                 </div>
               </div>
+              {openRsvp === e.id && <RsvpBreakdown e={e} rsvps={rsvps} />}
             </div>
           ))}
         </div>
@@ -568,7 +555,10 @@ function NewRecordPage({ go }) {
   );
 }
 
-function DetPage({ go, onSelectAct }) {
+function DetPage({ go, onSelectAct, events, grp, onRsvp, rsvps }) {
+  const g = findGrp(grp);
+  const grpEvts = events.filter(e => e.g === g.name && isPublic(e)).sort(byStart);
+  const grpActs = acts.filter(a => a.g === g.name);
   return (
     <div style={{ paddingBottom: 20 }}>
       <div style={{ padding: "10px 16px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
@@ -578,18 +568,18 @@ function DetPage({ go, onSelectAct }) {
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
             記録
           </button>
-          <button onClick={() => go("admin")} style={{ display: "flex", alignItems: "center", gap: 4, background: "none", border: "none", color: "#999", fontSize: 13, cursor: "pointer", padding: 0 }}>
+          {isAdmin(g.name, ME) && <button onClick={() => go("admin")} style={{ display: "flex", alignItems: "center", gap: 4, background: "none", border: "none", color: "#999", fontSize: 13, cursor: "pointer", padding: 0 }}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
             管理
-          </button>
+          </button>}
         </div>
       </div>
       <div style={{ position: "relative", height: 160 }}>
-        <img src="https://images.unsplash.com/photo-1452780212940-6f5c0d14d848?w=800&h=300&fit=crop" alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+        <Cover g={g} fs={26} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.65), transparent)" }} />
         <div style={{ position: "absolute", bottom: 0, padding: 16 }}>
-          <div style={{ fontSize: 24, fontWeight: 800, color: "#fff" }}>写真部</div>
-          <div style={{ color: "rgba(255,255,255,0.8)", fontSize: 12 }}>24人 • 2024-06-10設立</div>
+          <div style={{ fontSize: 24, fontWeight: 800, color: "#fff" }}>{g.name}</div>
+          <div style={{ color: "rgba(255,255,255,0.8)", fontSize: 12 }}>{grpN(g)}人 • {g.since}設立</div>
         </div>
       </div>
       <div style={{ padding: "14px 16px", display: "flex", flexDirection: "column", gap: 14 }}>
@@ -597,12 +587,12 @@ function DetPage({ go, onSelectAct }) {
           <div style={{ padding: 14 }}>
             <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 12 }}>
               <span style={{ fontSize: 15, fontWeight: 700, color: "#111" }}>メンバー</span>
-              <span style={{ fontSize: 12, color: "#999" }}>24人</span>
+              <span style={{ fontSize: 12, color: "#999" }}>{grpN(g)}人</span>
             </div>
             <div style={{ display: "flex", gap: 14, overflowX: "auto", scrollbarWidth: "none" }}>
-              {mems.map(m => (
+              {(g.members || []).map(id => findUser(id)).map(m => (
                 <button key={m.id} onClick={() => go("profile")} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 4, background: "none", border: "none", cursor: "pointer", minWidth: 56 }}>
-                  <img src={m.av} alt="" style={{ width: 44, height: 44, borderRadius: "50%", objectFit: "cover" }} />
+                  <Av u={m} s={44} />
                   <span style={{ fontSize: 10, color: "#666" }}>{m.nm.slice(0, 3)}</span>
                 </button>
               ))}
@@ -612,22 +602,25 @@ function DetPage({ go, onSelectAct }) {
         </div>
         <div style={{ ...C, padding: 14 }}>
           <div style={{ fontSize: 15, fontWeight: 700, color: "#111", marginBottom: 8 }}>グループについて</div>
-          <div style={{ color: "#666", fontSize: 13, lineHeight: 1.7 }}>写真が好きな人が集まるグループです。週末に撮影会を開催したり、作品を共有したりしています。</div>
+          <div style={{ color: "#666", fontSize: 13, lineHeight: 1.7 }}>{g.ds}</div>
         </div>
         <div style={{ ...C, padding: 14 }}>
           <div style={{ fontSize: 15, fontWeight: 700, color: "#111", marginBottom: 10 }}>今後の予定</div>
-          {[{ t: "夕焼け撮影会", d: "04/25 17:00", l: "海浜公園" }, { t: "機材交換会", d: "05/02 15:00", l: "コミュニティセンター" }].map((e, i) => (
+          {grpEvts.length === 0 && <div style={{ color: "#bbb", fontSize: 12, padding: "10px 0" }}>予定はまだありません</div>}
+          {grpEvts.map((e, i) => (
             <div key={i} style={{ border: "1px solid #eee", borderRadius: 8, padding: 12, marginBottom: 10 }}>
               <div style={{ fontWeight: 600, fontSize: 14, color: "#111" }}>{e.t}</div>
-              <div style={{ display: "flex", gap: 10, marginTop: 6 }}><span style={M}><CalI />{e.d}</span><span style={M}><PinI />{e.l}</span></div>
-              <button style={{ ...BP, marginTop: 10 }}>参加する</button>
+              <div style={{ display: "flex", gap: 10, marginTop: 6 }}><span style={M}><CalI />{fmtDate(e.start)} {tRange(e)}</span><span style={M}><PinI />{e.l}</span></div>
+              <EvtNote e={e} />
+              <EvtActions e={e} onRsvp={onRsvp} rsvps={rsvps} />
             </div>
           ))}
         </div>
         <div style={{ ...C, padding: 14 }}>
           <div style={{ fontSize: 15, fontWeight: 700, color: "#111", marginBottom: 10 }}>活動記録</div>
           <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-            {acts.map(a => (
+            {grpActs.length === 0 && <div style={{ color: "#bbb", fontSize: 12, padding: "4px 0" }}>活動記録はまだありません</div>}
+            {grpActs.map(a => (
               <button key={a.id} onClick={() => onSelectAct(a)} style={{ ...C, overflow: "hidden", border: "none", cursor: "pointer", textAlign: "left", width: "100%", padding: 0 }}>
                 <img src={a.img} alt="" style={{ width: "100%", height: 120, objectFit: "cover" }} />
                 <div style={{ padding: 12 }}>
@@ -758,10 +751,375 @@ function ProfPage() {
   );
 }
 
+const dPart = (iso) => (iso || "").slice(0, 10);
+const tPart = (iso) => (iso || "").slice(11, 16);
+const fmtDate = (iso) => `${dPart(iso).slice(5, 7)}/${dPart(iso).slice(8, 10)}`;
+const tRange = (e) => (e.end ? `${tPart(e.start)}–${tPart(e.end)}` : tPart(e.start));
+const byStart = (a, b) => (a.start || "").localeCompare(b.start || "");
+const seedEvts = evts.map(e => ({ st: "公開中", ...e })).sort(byStart);
+const isPublic = (e) => e.st === "公開中";
+const findGrp = (name) => grpCards.find(g => g.name === name) || grpCards[0];
+const myAdminGrps = () => grpCards.filter(g => (g.admins || []).includes(ME));
+const seedRsvps = [
+  { eventId: 1, userId: 2, answer: "yes" },
+  { eventId: 1, userId: 6, answer: "yes" },
+  { eventId: 3, userId: 3, answer: "yes" },
+  { eventId: 3, userId: 6, answer: "no" },
+  { eventId: 3, userId: 7, answer: "yes" },
+  { eventId: 8, userId: 2, answer: "yes" },
+  { eventId: 8, userId: 3, answer: "yes" },
+  { eventId: 8, userId: 4, answer: "no" },
+  { eventId: 8, userId: 5, answer: "yes" },
+];
+const answerOf = (rsvps, eventId, userId) => {
+  const r = rsvps.find(x => x.eventId === eventId && x.userId === userId);
+  return r ? r.answer : null;
+};
+const tally = (rsvps, e) => {
+  const roster = findGrp(e.g).members || [];
+  const of = (a) => roster.filter(u => answerOf(rsvps, e.id, u) === a);
+  const yes = of("yes"), no = of("no");
+  const pending = roster.filter(u => !answerOf(rsvps, e.id, u));
+  return { yes, no, pending, roster };
+};
+function Attendees({ ids, max = 6 }) {
+  if (ids.length === 0) return <div style={{ ...M, marginTop: 8 }}>まだ参加者はいません</div>;
+  const show = ids.slice(0, max);
+  return (
+    <div style={{ marginTop: 8 }}>
+      <div style={{ fontSize: 11, color: "#aaa", marginBottom: 5 }}>参加する人</div>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: 5 }}>
+        {show.map(id => {
+          const u = findUser(id);
+          return (
+            <span key={id} style={{ display: "inline-flex", alignItems: "center", gap: 5, padding: "3px 9px 3px 3px", borderRadius: 999, background: "#f5f5f5", fontSize: 11, color: "#555", fontWeight: 500 }}>
+              <Av u={u} s={18} />{u.nm}
+            </span>
+          );
+        })}
+        {ids.length > show.length && (
+          <span style={{ display: "inline-flex", alignItems: "center", padding: "3px 9px", borderRadius: 999, background: "#f5f5f5", fontSize: 11, color: "#999", fontWeight: 600 }}>
+            他{ids.length - show.length}人
+          </span>
+        )}
+      </div>
+    </div>
+  );
+}
+
+const IN = { width: "100%", padding: "10px 12px", borderRadius: 8, border: "1px solid #e5e7eb", fontSize: 13, outline: "none", boxSizing: "border-box" };
+
+function EvtForm({ fixedGrp, options = grpCards, initDate = "", onSubmit, onCancel }) {
+  const [f, setF] = useState({ t: "", g: fixedGrp || (options[0] || {}).name || "", d: initDate, tm: "", te: "", l: "", ds: "", rsvp: "join" });
+  const set = (k, v) => setF({ ...f, [k]: v });
+  const submit = () => {
+    if (!f.t.trim()) return;
+    onSubmit({
+      id: Date.now(), g: fixedGrp || f.g, t: f.t, l: f.l, ds: f.ds, rsvp: f.rsvp, st: "下書き",
+      start: f.d && f.tm ? `${f.d}T${f.tm}` : "",
+      end: f.d && f.te ? `${f.d}T${f.te}` : "",
+    });
+  };
+  return (
+    <div style={{ ...C, padding: 14, display: "flex", flexDirection: "column", gap: 10 }}>
+      {!fixedGrp && (
+        <div>
+          <div style={{ fontSize: 12, fontWeight: 700, color: "#111", marginBottom: 6 }}>どの部活のイベント？</div>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+            {options.map(g => {
+              const on = f.g === g.name;
+              return (
+                <button key={g.id} onClick={() => set("g", g.name)} style={{
+                  display: "inline-flex", alignItems: "center", gap: 6, padding: "6px 12px", borderRadius: 999, cursor: "pointer",
+                  border: `1.5px solid ${on ? g.color : "#e5e7eb"}`, background: on ? g.color : "#fff",
+                  color: on ? "#fff" : "#666", fontSize: 12, fontWeight: 600,
+                }}>
+                  <span style={{ width: 8, height: 8, borderRadius: "50%", background: on ? "#fff" : g.color }} />{g.name}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
+      <input type="text" placeholder="イベント名" value={f.t} onChange={e => set("t", e.target.value)} style={IN} />
+      <div style={{ display: "flex", gap: 8 }}>
+        <input type="text" placeholder="日付 (YYYY-MM-DD)" value={f.d} onChange={e => set("d", e.target.value)} style={{ ...IN, flex: 1 }} />
+        <input type="text" placeholder="開始 (HH:MM)" value={f.tm} onChange={e => set("tm", e.target.value)} style={{ ...IN, flex: 1 }} />
+        <input type="text" placeholder="終了 (HH:MM)" value={f.te} onChange={e => set("te", e.target.value)} style={{ ...IN, flex: 1 }} />
+      </div>
+      <input type="text" placeholder="場所" value={f.l} onChange={e => set("l", e.target.value)} style={IN} />
+      <textarea placeholder="詳細（持ち物、集合場所、注意点など）" value={f.ds} onChange={e => set("ds", e.target.value)}
+        style={{ ...IN, minHeight: 88, resize: "vertical", fontFamily: "inherit", lineHeight: 1.6 }} />
+      <div>
+        <div style={{ fontSize: 12, fontWeight: 700, color: "#111", marginBottom: 6 }}>参加確認のしかた</div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+          {[
+            { v: "join", lb: "参加ボタンのみ", sub: "参加する人だけが押します" },
+            { v: "yesno", lb: "参加・不参加を選ぶ", sub: "全員に可否を回答してもらいます" },
+          ].map(o => {
+            const on = f.rsvp === o.v;
+            return (
+              <button key={o.v} onClick={() => set("rsvp", o.v)}
+                style={{ display: "flex", alignItems: "center", gap: 10, width: "100%", textAlign: "left", padding: "10px 12px", borderRadius: 8, cursor: "pointer",
+                  border: `1.5px solid ${on ? A : "#e5e7eb"}`, background: on ? "#FFF7EC" : "#fff" }}>
+                <span style={{ width: 16, height: 16, borderRadius: "50%", flexShrink: 0, border: `2px solid ${on ? A : "#ccc"}`, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  {on && <span style={{ width: 8, height: 8, borderRadius: "50%", background: A }} />}
+                </span>
+                <span>
+                  <span style={{ display: "block", fontSize: 13, fontWeight: 700, color: on ? A : "#333" }}>{o.lb}</span>
+                  <span style={{ display: "block", fontSize: 11, color: "#999", marginTop: 1 }}>{o.sub}</span>
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+      <div style={{ display: "flex", gap: 8 }}>
+        <button onClick={onCancel} style={{ ...BO, flex: 1 }}>キャンセル</button>
+        <button onClick={submit} style={{ ...BP, flex: 1, opacity: f.t.trim() ? 1 : 0.5 }}>作成</button>
+      </div>
+    </div>
+  );
+}
+
+function EvtActions({ e, onRsvp, rsvps }) {
+  const mine = answerOf(rsvps, e.id, ME);
+  const t = tally(rsvps, e);
+  if (e.rsvp === "yesno") {
+    const opt = (v, lb) => {
+      const on = mine === v;
+      const col = v === "yes" ? A : "#999";
+      return (
+        <button onClick={() => onRsvp(e.id, v)} style={{
+          flex: 1, padding: "9px 0", borderRadius: 8, fontWeight: 700, fontSize: 12, cursor: "pointer",
+          border: `1.5px solid ${on ? col : "#e5e7eb"}`,
+          background: on ? col : "#fff", color: on ? "#fff" : "#888",
+        }}>{lb}</button>
+      );
+    };
+    return (
+      <div style={{ marginTop: 10 }}>
+        <div style={{ fontSize: 11, color: "#aaa", marginBottom: 6 }}>参加できますか？</div>
+        <div style={{ display: "flex", gap: 8 }}>{opt("yes", "参加する")}{opt("no", "不参加")}</div>
+        <div style={{ ...M, marginTop: 7, gap: 10 }}>
+          <span>参加 {t.yes.length}</span><span>不参加 {t.no.length}</span>
+        </div>
+        <Attendees ids={t.yes} />
+      </div>
+    );
+  }
+  return (
+    <div style={{ marginTop: 10 }}>
+      <button onClick={() => onRsvp(e.id, "yes")} style={mine === "yes" ? BO : BP}>
+        {mine === "yes" ? "参加予定" : "参加する"}
+      </button>
+      <Attendees ids={t.yes} />
+    </div>
+  );
+}
+
+const EvtNote = ({ e }) => e.ds
+  ? <div style={{ marginTop: 8, color: "#666", fontSize: 12, lineHeight: 1.7, whiteSpace: "pre-wrap" }}>{e.ds}</div>
+  : null;
+
+function RsvpBreakdown({ e, rsvps }) {
+  const t = tally(rsvps, e);
+  const row = (lb, ids, col) => (
+    <div style={{ marginBottom: 10 }}>
+      <div style={{ fontSize: 11, fontWeight: 700, color: col, marginBottom: 5 }}>{lb} {ids.length}人</div>
+      {ids.length === 0
+        ? <div style={{ fontSize: 11, color: "#ccc" }}>なし</div>
+        : <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+            {ids.map(id => {
+              const u = findUser(id);
+              return (
+                <span key={id} style={{ display: "inline-flex", alignItems: "center", gap: 5, padding: "4px 9px 4px 4px", borderRadius: 999, background: "#f5f5f5", fontSize: 11, color: "#555", fontWeight: 500 }}>
+                  <Av u={u} s={18} />{u.nm}
+                </span>
+              );
+            })}
+          </div>}
+    </div>
+  );
+  return (
+    <div style={{ marginTop: 12, paddingTop: 12, borderTop: "1px solid #f0f0f0" }}>
+      {row("参加", t.yes, "#4CAF50")}
+      {row("不参加", t.no, "#e05656")}
+    </div>
+  );
+}
+
+const Av = ({ u, s = 28 }) => u.av
+  ? <img src={u.av} alt="" style={{ width: s, height: s, borderRadius: "50%", objectFit: "cover", flexShrink: 0 }} />
+  : <div style={{ width: s, height: s, borderRadius: "50%", flexShrink: 0, background: "#ececec", color: "#888", display: "flex", alignItems: "center", justifyContent: "center", fontSize: Math.round(s * 0.4), fontWeight: 700 }}>{u.nm.slice(0, 1)}</div>;
+
+function EvtSheet({ e, onClose, onRsvp, rsvps, openGrp }) {
+  const g = findGrp(e.g);
+  return (
+    <div style={{ position: "absolute", inset: 0, zIndex: 200, display: "flex", flexDirection: "column", borderRadius: 37, overflow: "hidden" }}>
+      <div onClick={onClose} style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.4)" }} />
+      <div style={{ position: "relative", marginTop: "auto", background: "#fff", borderRadius: "16px 16px 0 0", maxHeight: "82%", overflowY: "auto", scrollbarWidth: "none" }}>
+        <div style={{ display: "flex", justifyContent: "center", padding: "10px 0 0", position: "sticky", top: 0, background: "#fff", zIndex: 1 }}>
+          <div style={{ width: 36, height: 4, borderRadius: 2, background: "#ddd" }} />
+        </div>
+        <div style={{ padding: 16 }}>
+          <button onClick={() => { onClose(); openGrp(e.g); }} style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "none", border: "none", padding: 0, cursor: "pointer", fontSize: 12, fontWeight: 700, color: g.color }}>
+            <span style={{ width: 8, height: 8, borderRadius: "50%", background: g.color }} />{e.g}
+          </button>
+          <h2 style={{ fontSize: 20, fontWeight: 800, color: "#111", margin: "6px 0 0" }}>{e.t}</h2>
+          {e.st !== "公開中" && (
+            <span style={{ display: "inline-block", marginTop: 8, fontSize: 10, fontWeight: 600, padding: "2px 8px", borderRadius: 999, background: "#FFF3E0", color: "#FF9800" }}>{e.st}</span>
+          )}
+          <div style={{ marginTop: 12, display: "flex", flexDirection: "column", gap: 7 }}>
+            <span style={{ ...M, fontSize: 12 }}><CalI />{fmtDate(e.start)}（{WD[new Date(dPart(e.start)).getDay()]}） {tRange(e)}</span>
+            <span style={{ ...M, fontSize: 12 }}><PinI />{e.l || "場所未定"}</span>
+          </div>
+          <EvtNote e={e} />
+          <EvtActions e={e} onRsvp={onRsvp} rsvps={rsvps} />
+          <button onClick={onClose} style={{ width: "100%", marginTop: 20, padding: "11px 0", background: "#f5f5f5", border: "none", borderRadius: 10, color: "#888", fontWeight: 600, fontSize: 13, cursor: "pointer" }}>閉じる</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+const Cover = ({ g, fs = 20 }) => (
+  g.img
+    ? <img src={g.img} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+    : <div style={{ width: "100%", height: "100%", background: `linear-gradient(135deg, ${g.color} 0%, ${g.color}aa 100%)`, display: "flex", alignItems: "center", justifyContent: "center", color: "rgba(255,255,255,0.95)", fontWeight: 800, fontSize: fs, letterSpacing: "0.06em" }}>{g.name}</div>
+);
+const gColor = (name) => (groups.find(g => g.name === name) || {}).color || A;
+const pad2 = (n) => String(n).padStart(2, "0");
+const WD = ["日", "月", "火", "水", "木", "金", "土"];
+
+function EvRow({ e, onGo }) {
+  return (
+    <div onClick={onGo} style={{ ...C, display: "flex", gap: 10, padding: 12, marginBottom: 8, cursor: "pointer" }}>
+      <div style={{ width: 3, borderRadius: 2, background: gColor(e.g), flexShrink: 0 }} />
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
+          <span style={{ fontSize: 13, fontWeight: 800, color: "#111" }}>{tRange(e)}</span>
+          <span style={{ fontSize: 11, color: gColor(e.g), fontWeight: 600 }}>{e.g}</span>
+        </div>
+        <div style={{ fontSize: 13, fontWeight: 700, color: "#111", marginTop: 3 }}>{e.t}</div>
+        <div style={{ ...M, marginTop: 5 }}><PinI s={12} />{e.l}</div>
+      </div>
+      <div style={{ alignSelf: "center", color: "#ddd" }}><ChI /></div>
+    </div>
+  );
+}
+
+function CalPage({ go, events, openGrp, addEvent, onOpenEvt }) {
+  const [showNew, setShowNew] = useState(false);
+  const adminGrps = myAdminGrps();
+  const [ym, setYm] = useState({ y: 2026, m: 4 });
+  const { y: YEAR, m: month } = ym;
+  const [sel, setSel] = useState(null);
+
+  const startDow = new Date(YEAR, month - 1, 1).getDay();
+  const nDays = new Date(YEAR, month, 0).getDate();
+  const ymKey = `${YEAR}-${pad2(month)}`;
+  const pub = events.filter(isPublic);
+  const evOn = (d) => pub.filter(e => dPart(e.start) === `${ymKey}-${pad2(d)}`).sort(byStart);
+  const monthEvts = pub.filter(e => dPart(e.start).startsWith(ymKey)).sort(byStart);
+
+  const cells = [];
+  for (let i = 0; i < startDow; i++) cells.push(null);
+  for (let d = 1; d <= nDays; d++) cells.push(d);
+  while (cells.length % 7 !== 0) cells.push(null);
+
+  const shift = (n) => {
+    const d = new Date(YEAR, month - 1 + n, 1);
+    setYm({ y: d.getFullYear(), m: d.getMonth() + 1 });
+    setSel(null);
+  };
+
+  const listEvts = sel ? evOn(sel) : monthEvts;
+  const listTitle = sel ? `${month}月${sel}日の予定` : `${month}月の予定`;
+
+  return (
+    <div style={{ padding: 12 }}>
+      <div style={{ ...C, padding: "12px 10px 14px", marginBottom: 12 }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 6px 10px" }}>
+          <button onClick={() => shift(-1)} aria-label="前の月"
+            style={{ background: "none", border: "none", cursor: "pointer", color: "#bbb", padding: 4, display: "flex", transform: "rotate(180deg)" }}><ChI s={18} /></button>
+          <div style={{ fontSize: 15, fontWeight: 800, color: "#111" }}>{YEAR}年{month}月</div>
+          <button onClick={() => shift(1)} aria-label="次の月"
+            style={{ background: "none", border: "none", cursor: "pointer", color: "#bbb", padding: 4, display: "flex" }}><ChI s={18} /></button>
+        </div>
+
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(7, 1fr)" }}>
+          {WD.map((w, i) => (
+            <div key={w} style={{ textAlign: "center", fontSize: 10, fontWeight: 600, paddingBottom: 6, color: i === 0 ? "#d9755f" : i === 6 ? "#6b8fb5" : "#aaa" }}>{w}</div>
+          ))}
+          {cells.map((d, i) => {
+            if (d === null) return <div key={i} />;
+            const de = evOn(d);
+            const isSel = sel === d;
+            return (
+              <button key={i} onClick={() => setSel(isSel ? null : d)}
+                style={{ background: "none", border: "none", cursor: "pointer", padding: "3px 0 4px", display: "flex", flexDirection: "column", alignItems: "center", gap: 3 }}>
+                <span style={{
+                  width: 26, height: 26, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center",
+                  fontSize: 12, fontWeight: isSel ? 700 : 500,
+                  background: isSel ? A : "transparent",
+                  color: isSel ? "#fff" : i % 7 === 0 ? "#d9755f" : i % 7 === 6 ? "#6b8fb5" : "#333",
+                }}>{d}</span>
+                <span style={{ display: "flex", gap: 2, height: 4 }}>
+                  {de.slice(0, 3).map(e => (
+                    <span key={e.id} style={{ width: 4, height: 4, borderRadius: "50%", background: gColor(e.g) }} />
+                  ))}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {adminGrps.length === 0 ? null : showNew ? (
+        <div style={{ marginBottom: 14 }}>
+          <EvtForm options={adminGrps} initDate={sel ? `${ymKey}-${pad2(sel)}` : ""}
+            onSubmit={(ev) => { addEvent({ ...ev, st: "公開中" }); setShowNew(false); }}
+            onCancel={() => setShowNew(false)} />
+        </div>
+      ) : (
+        <button onClick={() => setShowNew(true)} style={{ ...BP, marginBottom: 14, display: "flex", alignItems: "center", justifyContent: "center", gap: 6 }}>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+          {sel ? `${month}月${sel}日にイベントを作成` : "イベントを作成"}
+        </button>
+      )}
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8, padding: "0 2px" }}>
+        <span style={{ fontSize: 13, fontWeight: 800, color: "#111" }}>{listTitle}</span>
+        {sel && <button onClick={() => setSel(null)} style={{ background: "none", border: "none", cursor: "pointer", fontSize: 11, color: A, fontWeight: 600 }}>月全体を見る</button>}
+      </div>
+
+      {listEvts.length === 0 ? (
+        <div style={{ ...C, padding: "28px 16px", textAlign: "center", color: "#bbb", fontSize: 12 }}>
+          予定はありません
+        </div>
+      ) : (
+        listEvts.map(e => <EvRow key={e.id} e={e} onGo={() => onOpenEvt(e.id)} />)
+      )}
+    </div>
+  );
+}
+
 export default function App() {
   const [page, setPage] = useState("home");
   const [selectedAct, setSelectedAct] = useState(null);
+  const [events, setEvents] = useState(seedEvts);
+  const [posts, setPosts] = useState([]);
+  const [rsvps, setRsvps] = useState(seedRsvps);
+  const [selectedEvt, setSelectedEvt] = useState(null);
+  const [grp, setGrp] = useState("フットサル部");
+  const openGrp = (name) => { setGrp(name); setPage("detail"); };
+  const addEvent = (ev) => setEvents([...events, ev].sort(byStart));
+  const onRsvp = (eventId, answer) => setRsvps(prev => {
+    const rest = prev.filter(r => !(r.eventId === eventId && r.userId === ME));
+    return answerOf(prev, eventId, ME) === answer ? rest : [...rest, { eventId, userId: ME, answer }];
+  });
   const nav = [
+    { id: "calendar", lb: "イベント", ic: <CalI s={22} /> },
     { id: "home", lb: "ホーム", ic: <HmI /> },
     { id: "groups", lb: "ボド部", ic: <UsrI s={22} /> },
     { id: "profile", lb: "プロフィール", ic: <PrI /> },
@@ -788,11 +1146,12 @@ export default function App() {
               <span style={{ fontWeight: 800, fontSize: 18, color: A }}>コミュニティ</span>
             </div>
             <div style={{ flex: 1, overflowY: "auto", overflowX: "hidden" }} className="no-scrollbar">
-              {page === "home" && <HomePage go={setPage} onSelectAct={setSelectedAct} />}
+              {page === "calendar" && <CalPage go={setPage} events={events} openGrp={openGrp} addEvent={addEvent} onOpenEvt={setSelectedEvt} />}
+      {page === "home" && <HomePage go={setPage} onSelectAct={setSelectedAct} events={events} posts={posts} setPosts={setPosts} openGrp={openGrp} onRsvp={onRsvp} rsvps={rsvps} />}
               {page === "profile" && <ProfPage />}
-              {page === "groups" && <GrpsPage go={setPage} />}
-              {page === "detail" && <DetPage go={setPage} onSelectAct={setSelectedAct} />}
-              {page === "admin" && <AdminPage go={setPage} />}
+              {page === "groups" && <GrpsPage go={setPage} openGrp={openGrp} />}
+              {page === "detail" && <DetPage go={setPage} onSelectAct={setSelectedAct} events={events} grp={grp} onRsvp={onRsvp} rsvps={rsvps} />}
+              {page === "admin" && <AdminPage go={setPage} events={events} setEvents={setEvents} grp={grp} rsvps={rsvps} />}
               {page === "newRecord" && <NewRecordPage go={setPage} />}
             </div>
             <div style={{ background: "#fff", borderTop: "1px solid #eee", display: "flex", justifyContent: "space-around", padding: "6px 0 20px", flexShrink: 0 }}>
@@ -804,6 +1163,10 @@ export default function App() {
                 </button>
               ))}
             </div>
+            {selectedEvt !== null && events.find(x => x.id === selectedEvt) && (
+              <EvtSheet e={events.find(x => x.id === selectedEvt)} onClose={() => setSelectedEvt(null)}
+                onRsvp={onRsvp} rsvps={rsvps} openGrp={openGrp} />
+            )}
             {/* Activity Detail Overlay */}
             {selectedAct && (
               <div style={{ position: "absolute", inset: 0, zIndex: 200, display: "flex", flexDirection: "column", borderRadius: 37, overflow: "hidden" }}>
