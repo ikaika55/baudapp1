@@ -27,32 +27,33 @@ const acts = [
     members: ["佐藤花子", "鈴木美咲", "高橋健太"] },
 ];
 const users = [
-  { id: 1, nm: "山田太郎", av: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop" },
-  { id: 2, nm: "佐藤花子", av: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" },
-  { id: 3, nm: "田中次郎", av: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop" },
-  { id: 4, nm: "鈴木美咲", av: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop" },
-  { id: 5, nm: "高橋健太" },
-  { id: 6, nm: "中村優子" },
-  { id: 7, nm: "小林大輔" },
-  { id: 8, nm: "渡辺さくら" },
+  { id: 1, nm: "山田太郎", av: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop" , dept: "第1技術部", since: "2021-04", bio: "体を動かすのが好きです。週末はだいたいコートにいます。" },
+  { id: 2, nm: "佐藤花子", av: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" , dept: "第2技術部", since: "2019-04", bio: "バレーとダンス。声だけは大きいです。" },
+  { id: 3, nm: "田中次郎", av: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop" , dept: "営業部", since: "2022-10", bio: "ダーツ歴3年。同期募集中。" },
+  { id: 4, nm: "鈴木美咲", av: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop" , dept: "第1技術部", since: "2023-04", bio: "踊ることと食べることが好きです。" },
+  { id: 5, nm: "高橋健太" , dept: "管理部", since: "2018-04", bio: "バスケは学生時代から。ブランクあり。" },
+  { id: 6, nm: "中村優子" , dept: "第2技術部", since: "2020-04", bio: "運動もゲームもほどほどに楽しんでいます。" },
+  { id: 7, nm: "小林大輔" , dept: "営業部", since: "2017-04", bio: "麻雀とゲームの幹事をやっています。" },
+  { id: 8, nm: "渡辺さくら" , dept: "第1技術部", since: "2024-04", bio: "新人です。いろいろ顔を出しています。" },
 ];
 const ME = 1;
 const findUser = (id) => users.find(u => u.id === id) || { id, nm: "?" };
 const grpCards = [
-  { id: 1, name: "フットサル部", since: "2023-05-12", ds: "毎週末フットサルを楽しむグループです。", members: [1, 2, 3, 4, 5, 6], admins: [1, 2], color: "#2E8B57", cat: "アウトドア", img: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400&h=200&fit=crop" },
-  { id: 2, name: "ダンス部", since: "2024-04-08", ds: "振り入れから発表会まで、みんなで踊るグループです。", members: [2, 4, 7, 8], admins: [4], color: "#DA70D6", cat: "インドア" },
-  { id: 3, name: "ダーツ部", since: "2024-02-20", ds: "仕事帰りにダーツを投げています。初心者歓迎。", members: [3, 5, 7], admins: [3], color: "#DC143C", cat: "趣味" },
-  { id: 4, name: "麻雀部", since: "2023-09-15", ds: "月に数回集まって卓を囲んでいます。", members: [1, 3, 6, 7, 8], admins: [7], color: "#6B8E23", cat: "趣味" },
-  { id: 5, name: "バスケ部", since: "2023-07-03", ds: "体育館を借りて練習と試合をしています。", members: [1, 2, 5, 6], admins: [5], color: "#E89B3C", cat: "アウトドア" },
-  { id: 6, name: "バレー部", since: "2024-01-22", ds: "経験者も未経験者も一緒に楽しむバレーボール部。", members: [2, 4, 6, 8], admins: [2], color: "#4682B4", cat: "アウトドア" },
-  { id: 7, name: "ゲーム部", since: "2024-02-14", ds: "対戦ゲームからボードゲームまで幅広く遊んでいます。", members: [1, 3, 4, 7, 8], admins: [1, 7], color: "#9370DB", cat: "趣味", img: "https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?w=400&h=200&fit=crop" },
+  { id: 1, name: "フットサル部", since: "2023-05-12", ds: "毎週末フットサルを楽しむグループです。", members: [1, 2, 3, 4, 5, 6], admins: [1, 2], color: "#2E8B57", cat: "スポーツ", img: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400&h=200&fit=crop" },
+  { id: 2, name: "ダンス部", since: "2024-04-08", ds: "振り入れから発表会まで、みんなで踊るグループです。", members: [2, 4, 7, 8], admins: [4], color: "#DA70D6", cat: "スポーツ" },
+  { id: 3, name: "ダーツ部", since: "2024-02-20", ds: "仕事帰りにダーツを投げています。初心者歓迎。", members: [3, 5, 7], admins: [3], color: "#DC143C", cat: "インドア" },
+  { id: 4, name: "麻雀部", since: "2023-09-15", ds: "月に数回集まって卓を囲んでいます。", members: [1, 3, 6, 7, 8], admins: [7], color: "#6B8E23", cat: "インドア" },
+  { id: 5, name: "バスケ部", since: "2023-07-03", ds: "体育館を借りて練習と試合をしています。", members: [1, 2, 5, 6], admins: [5], color: "#E89B3C", cat: "スポーツ" },
+  { id: 6, name: "バレー部", since: "2024-01-22", ds: "経験者も未経験者も一緒に楽しむバレーボール部。", members: [2, 4, 6, 8], admins: [2], color: "#4682B4", cat: "スポーツ" },
+  { id: 7, name: "ゲーム部", since: "2024-02-14", ds: "対戦ゲームからボードゲームまで幅広く遊んでいます。", members: [1, 3, 4, 7, 8], admins: [1, 7], color: "#9370DB", cat: "インドア", img: "https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?w=400&h=200&fit=crop" },
 ];
 const grpN = (g) => (g.members || []).length;
 const isAdmin = (grpName, userId) => (findGrpRaw(grpName).admins || []).includes(userId);
 const findGrpRaw = (name) => grpCards.find(g => g.name === name) || {};
 const groups = grpCards.map(({ id, name, members, color }) => ({ id, name, n: members.length, color }));
 const prof = {
-  name: "山田太郎", bio: "体を動かすのが好きです。週末はだいたいコートにいます。", loc: "東京", joined: "2025-01-15",
+  name: "山田太郎", kana: "やまだたろう", bio: "体を動かすのが好きです。週末はだいたいコートにいます。", loc: "東京", joined: "2025-01-15",
+  nick: "たろちゃん", hobby: "フットサル、ゲーム、カメラ",
   hometown: "大阪府", joinedCompany: "2022年4月", department: "第◯技術部",
   av: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop",
   grps: [{ name: "フットサル部", color: "#2E8B57" }, { name: "バスケ部", color: "#E89B3C" }, { name: "ゲーム部", color: "#9370DB" }],
@@ -296,7 +297,7 @@ function HomePage({ go, onSelectAct, events, posts, setPosts, openGrp, onRsvp, r
 function GrpsPage({ go, openGrp }) {
   const [q, setQ] = useState("");
   const [cat, setCat] = useState("すべて");
-  const tabs = ["すべて", "アウトドア", "インドア", "趣味", "その他"];
+  const tabs = ["すべて", "スポーツ", "インドア"];
   const filtered = grpCards.filter(g => {
     const matchQ = !q || g.name.includes(q) || g.ds.includes(q);
     const matchCat = cat === "すべて" || g.cat === cat;
@@ -555,7 +556,7 @@ function NewRecordPage({ go }) {
   );
 }
 
-function DetPage({ go, onSelectAct, events, grp, onRsvp, rsvps }) {
+function DetPage({ go, onSelectAct, events, grp, onRsvp, rsvps, openUser }) {
   const g = findGrp(grp);
   const grpEvts = events.filter(e => e.g === g.name && isPublic(e)).sort(byStart);
   const grpActs = acts.filter(a => a.g === g.name);
@@ -591,7 +592,7 @@ function DetPage({ go, onSelectAct, events, grp, onRsvp, rsvps }) {
             </div>
             <div style={{ display: "flex", gap: 14, overflowX: "auto", scrollbarWidth: "none" }}>
               {(g.members || []).map(id => findUser(id)).map(m => (
-                <button key={m.id} onClick={() => go("profile")} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 4, background: "none", border: "none", cursor: "pointer", minWidth: 56 }}>
+                <button key={m.id} onClick={() => openUser(m.id)} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 4, background: "none", border: "none", cursor: "pointer", minWidth: 56 }}>
                   <Av u={m} s={44} />
                   <span style={{ fontSize: 10, color: "#666" }}>{m.nm.slice(0, 3)}</span>
                 </button>
@@ -640,11 +641,85 @@ function DetPage({ go, onSelectAct, events, grp, onRsvp, rsvps }) {
   );
 }
 
-function ProfPage() {
+function MembersPage({ go, openUser }) {
+  const [q, setQ] = useState("");
+  const kw = q.trim();
+  const list = users.filter(u => !kw || u.nm.includes(kw) || (u.dept || "").includes(kw));
+
+  return (
+    <div style={{ padding: "14px 16px", paddingBottom: 20 }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14 }}>
+        <button onClick={() => go("profile")} style={{ display: "flex", alignItems: "center", gap: 4, background: "none", border: "none", color: "#999", fontSize: 13, cursor: "pointer", padding: 0 }}><BkI />戻る</button>
+        <span style={{ fontSize: 15, fontWeight: 700, color: "#111" }}>社員一覧</span>
+        <div style={{ width: 50 }} />
+      </div>
+
+      <input type="text" placeholder="名前や部署で検索" value={q} onChange={e => setQ(e.target.value)}
+        style={{ ...IN, marginBottom: 12 }} />
+      <div style={{ ...M, marginBottom: 10 }}>{list.length}人</div>
+
+      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+        {list.length === 0 && <div style={{ ...C, padding: "28px 16px", textAlign: "center", color: "#bbb", fontSize: 12 }}>該当する社員がいません</div>}
+        {list.map(u => (
+          <button key={u.id} onClick={() => openUser(u.id)}
+            style={{ ...C, display: "flex", alignItems: "center", gap: 11, padding: 12, border: "none", cursor: "pointer", textAlign: "left", width: "100%" }}>
+            <Av u={u} s={42} />
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{ fontSize: 14, fontWeight: 700, color: "#111" }}>{u.nm}{u.id === ME && <span style={{ fontSize: 10, color: "#bbb", marginLeft: 6 }}>自分</span>}</div>
+              <div style={{ fontSize: 11, color: "#999", marginTop: 2 }}>{u.dept}</div>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 4, marginTop: 6 }}>
+                {grpsOf(u.id).map(g => (
+                  <span key={g.id} style={{ display: "inline-flex", alignItems: "center", gap: 4, padding: "2px 8px", borderRadius: 999, fontSize: 10, fontWeight: 600, color: "#fff", background: g.color }}>{g.name}</span>
+                ))}
+              </div>
+            </div>
+            <span style={{ color: "#ddd" }}><ChI /></span>
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function MemberPage({ go, userId, openGrp }) {
+  const u = findUser(userId);
+  const gs = grpsOf(u.id);
+  return (
+    <div style={{ padding: "14px 16px", paddingBottom: 20 }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14 }}>
+        <button onClick={() => go("members")} style={{ display: "flex", alignItems: "center", gap: 4, background: "none", border: "none", color: "#999", fontSize: 13, cursor: "pointer", padding: 0 }}><BkI />一覧</button>
+        <span style={{ fontSize: 15, fontWeight: 700, color: "#111" }}>プロフィール</span>
+        <div style={{ width: 50 }} />
+      </div>
+
+      <div style={{ ...C, padding: 20, textAlign: "center", marginBottom: 16 }}>
+        <div style={{ display: "flex", justifyContent: "center", marginBottom: 12 }}><Av u={u} s={80} /></div>
+        <div style={{ fontSize: 20, fontWeight: 800, color: "#111", marginBottom: 8 }}>{u.nm}</div>
+        <div style={{ display: "flex", gap: 6, justifyContent: "center", flexWrap: "wrap", marginBottom: 10 }}>
+          {gs.map(g => (
+            <button key={g.id} onClick={() => openGrp(g.name)}
+              style={{ display: "inline-flex", alignItems: "center", gap: 4, padding: "3px 10px", borderRadius: 999, fontSize: 11, fontWeight: 600, color: "#fff", background: g.color, border: "none", cursor: "pointer" }}>
+              <span style={{ width: 5, height: 5, background: "#fff", borderRadius: "50%" }} />{g.name}
+            </button>
+          ))}
+          {gs.length === 0 && <span style={{ fontSize: 11, color: "#bbb" }}>所属している部活はありません</span>}
+        </div>
+        {u.bio && <div style={{ color: "#777", fontSize: 13, marginBottom: 12, lineHeight: 1.7 }}>{u.bio}</div>}
+        <div style={{ display: "flex", justifyContent: "center", gap: 6, flexWrap: "wrap" }}>
+          <span style={{ padding: "3px 10px", borderRadius: 999, background: "#f5f5f5", fontSize: 11, color: "#666" }}>{u.dept}</span>
+          <span style={{ padding: "3px 10px", borderRadius: 999, background: "#f5f5f5", fontSize: 11, color: "#666" }}>{u.since}入社</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ProfPage({ go, photos, setPhotos, avatar, setAvatar }) {
   const [editing, setEditing] = useState(false);
   const [p, setP] = useState({
-    name: prof.name, bio: prof.bio, hometown: prof.hometown,
+    name: prof.name, kana: prof.kana, bio: prof.bio, hometown: prof.hometown,
     joinedCompany: prof.joinedCompany, deptNum: "◯",
+    nick: prof.nick, hobby: prof.hobby,
   });
   const [saved, setSaved] = useState(false);
   const dept = `第${p.deptNum}技術部`;
@@ -654,13 +729,52 @@ function ProfPage() {
     setTimeout(() => { setSaved(false); setEditing(false); }, 1000);
   };
 
+  const readFiles = (fileList, onEach) => {
+    Array.from(fileList || []).forEach(f => {
+      if (!f.type.startsWith("image/")) return;
+      const r = new FileReader();
+      r.onload = () => onEach(r.result);
+      r.readAsDataURL(f);
+    });
+  };
+  const pickPhotos = (e) => { readFiles(e.target.files, (url) => setPhotos(prev => [url, ...prev])); e.target.value = ""; };
+  const pickAvatar = (e) => { readFiles(e.target.files, (url) => setAvatar(url)); e.target.value = ""; };
+
   return (
     <div style={{ padding: "14px 16px", paddingBottom: 20 }}>
       {!editing ? (
         <>
-          <div style={{ ...C, padding: 20, textAlign: "center", marginBottom: 20 }}>
-            <img src={prof.av} alt="" style={{ width: 80, height: 80, borderRadius: "50%", objectFit: "cover", margin: "0 auto 12px" }} />
-            <div style={{ fontSize: 20, fontWeight: 800, color: "#111", marginBottom: 8 }}>{p.name}</div>
+          <div style={{ borderRadius: 14, overflow: "hidden", marginBottom: 16, boxShadow: "0 2px 10px rgba(0,0,0,0.08)", background: "linear-gradient(120deg, #FCE38A 0%, #F9C87B 42%, #F0964A 100%)", position: "relative" }}>
+            <span style={{ position: "absolute", top: 9, right: 11, fontSize: 10, fontWeight: 600, color: "rgba(255,255,255,0.95)", letterSpacing: "0.02em" }}>baudroie inc.</span>
+
+            <div style={{ display: "flex", gap: 10, padding: "12px 11px 14px", alignItems: "flex-start" }}>
+              <div style={{ flexShrink: 0, width: 96 }}>
+                <div style={{ width: 96, height: 116, borderRadius: "48px / 58px", overflow: "hidden", background: "#fff" }}>
+                  <img src={avatar} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                </div>
+                <div style={{ marginTop: 6, background: "rgba(255,255,255,0.85)", borderRadius: 4, padding: "3px 4px", textAlign: "center", fontSize: 11, fontWeight: 700, color: "#5b4a3a", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{p.nick || "　"}</div>
+              </div>
+
+              <div style={{ flex: 1, minWidth: 0, paddingTop: 12 }}>
+                <div style={{ fontSize: 9, fontWeight: 600, color: "#5b4a3a", letterSpacing: "0.12em" }}>{p.kana}</div>
+                <div style={{ fontSize: 22, fontWeight: 900, color: "#2b2b2b", letterSpacing: "0.05em", lineHeight: 1.15, marginTop: 1 }}>{p.name}</div>
+
+                <div style={{ marginTop: 10, display: "flex", flexDirection: "column", gap: 8 }}>
+                  {[
+                    { lb: "プロフィール", v: `${p.hometown}出身 / ${dept}` },
+                    { lb: "趣味/マイブーム", v: p.hobby },
+                  ].map(row => (
+                    <div key={row.lb} style={{ position: "relative", paddingTop: 8 }}>
+                      <span style={{ position: "absolute", top: 0, left: 6, zIndex: 1, padding: "1px 8px", borderRadius: 3, fontSize: 8, fontWeight: 700, color: "#fff", background: "linear-gradient(90deg, #9b6bc4 0%, #e28a4f 100%)", letterSpacing: "0.03em", whiteSpace: "nowrap" }}>{row.lb}</span>
+                      <div style={{ background: "rgba(255,255,255,0.92)", borderRadius: 7, padding: "12px 9px 9px", fontSize: 11, color: "#444", textAlign: "center", lineHeight: 1.5, wordBreak: "break-word" }}>{row.v}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style={{ ...C, padding: 16, textAlign: "center", marginBottom: 20 }}>
             <div style={{ display: "flex", gap: 6, justifyContent: "center", flexWrap: "wrap", marginBottom: 10 }}>
               {prof.grps.map((g, i) => (
                 <span key={i} style={{ display: "inline-flex", alignItems: "center", gap: 4, padding: "3px 10px", borderRadius: 999, fontSize: 11, fontWeight: 600, color: "#fff", background: g.color }}>
@@ -670,17 +784,38 @@ function ProfPage() {
             </div>
             <div style={{ color: "#777", fontSize: 13, marginBottom: 12 }}>{p.bio}</div>
             <div style={{ display: "flex", justifyContent: "center", gap: 6, marginBottom: 12, flexWrap: "wrap" }}>
-              <span style={{ display: "inline-flex", alignItems: "center", gap: 4, padding: "3px 10px", borderRadius: 999, background: "#f5f5f5", fontSize: 11, color: "#666" }}>{p.hometown}</span>
               <span style={{ display: "inline-flex", alignItems: "center", gap: 4, padding: "3px 10px", borderRadius: 999, background: "#f5f5f5", fontSize: 11, color: "#666" }}>{p.joinedCompany}入社</span>
-              <span style={{ display: "inline-flex", alignItems: "center", gap: 4, padding: "3px 10px", borderRadius: 999, background: "#f5f5f5", fontSize: 11, color: "#666" }}>{dept}</span>
             </div>
             <button onClick={() => setEditing(true)} style={BP}>プロフィールを編集</button>
+            <button onClick={() => go("members")} style={{ ...BO, marginTop: 8 }}>社員一覧を見る</button>
           </div>
-          <div style={{ fontSize: 18, fontWeight: 700, color: "#111", marginBottom: 12 }}>写真</div>
+          <input id="pickPhotos" type="file" accept="image/*" multiple onChange={pickPhotos} style={{ display: "none" }} />
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
+            <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
+              <span style={{ fontSize: 18, fontWeight: 700, color: "#111" }}>写真</span>
+              <span style={{ fontSize: 12, color: "#bbb" }}>{photos.length}枚</span>
+            </div>
+            <label htmlFor="pickPhotos" style={{
+              display: "inline-flex", alignItems: "center", gap: 5, cursor: "pointer",
+              padding: "6px 12px", borderRadius: 999, border: `1.5px solid ${A}`,
+              color: A, fontSize: 12, fontWeight: 700,
+            }}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+              写真を追加
+            </label>
+          </div>
+          {photos.length === 0 && (
+            <div style={{ ...C, padding: "32px 16px", textAlign: "center", color: "#bbb", fontSize: 12 }}>まだ写真がありません</div>
+          )}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
-            {prof.phs.map((u, i) => (
-              <div key={i} style={{ aspectRatio: "1/1", borderRadius: 8, overflow: "hidden", ...C }}>
+            {photos.map((u, i) => (
+              <div key={i} style={{ position: "relative", aspectRatio: "1/1", borderRadius: 8, overflow: "hidden", ...C }}>
                 <img src={u} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                <button onClick={() => setPhotos(prev => prev.filter((_, j) => j !== i))} aria-label="削除"
+                  style={{ position: "absolute", top: 6, right: 6, width: 24, height: 24, borderRadius: "50%", border: "none", cursor: "pointer",
+                    background: "rgba(0,0,0,0.55)", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", padding: 0 }}>
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                </button>
               </div>
             ))}
           </div>
@@ -695,10 +830,11 @@ function ProfPage() {
           {/* Avatar */}
           <div style={{ textAlign: "center", marginBottom: 20 }}>
             <div style={{ position: "relative", display: "inline-block" }}>
-              <img src={prof.av} alt="" style={{ width: 80, height: 80, borderRadius: "50%", objectFit: "cover" }} />
-              <div style={{ position: "absolute", bottom: 0, right: 0, width: 26, height: 26, borderRadius: "50%", background: A, display: "flex", alignItems: "center", justifyContent: "center", border: "2px solid #fff" }}>
+              <img src={avatar} alt="" style={{ width: 80, height: 80, borderRadius: "50%", objectFit: "cover" }} />
+              <input id="pickAvatar" type="file" accept="image/*" onChange={pickAvatar} style={{ display: "none" }} />
+              <label htmlFor="pickAvatar" style={{ position: "absolute", bottom: 0, right: 0, width: 26, height: 26, borderRadius: "50%", background: A, display: "flex", alignItems: "center", justifyContent: "center", border: "2px solid #fff", cursor: "pointer" }}>
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
-              </div>
+              </label>
             </div>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
@@ -710,6 +846,15 @@ function ProfPage() {
             </div>
             {/* Free space */}
             <div style={{ ...C, padding: 14 }}>
+              <label style={{ fontSize: 12, fontWeight: 600, color: "#888", marginBottom: 6, display: "block" }}>ふりがな</label>
+              <input type="text" value={p.kana} onChange={e => setP({ ...p, kana: e.target.value })} placeholder="例: やまだたろう" style={{ ...IN, marginBottom: 16 }} />
+
+              <label style={{ fontSize: 12, fontWeight: 600, color: "#888", marginBottom: 6, display: "block" }}>あだ名</label>
+              <input type="text" value={p.nick} onChange={e => setP({ ...p, nick: e.target.value })} placeholder="例: たろちゃん" style={{ ...IN, marginBottom: 16 }} />
+
+              <label style={{ fontSize: 12, fontWeight: 600, color: "#888", marginBottom: 6, display: "block" }}>趣味 / マイブーム</label>
+              <input type="text" value={p.hobby} onChange={e => setP({ ...p, hobby: e.target.value })} placeholder="例: Ai、筋トレ、本" style={{ ...IN, marginBottom: 16 }} />
+
               <label style={{ fontSize: 12, fontWeight: 600, color: "#888", marginBottom: 6, display: "block" }}>フリースペース</label>
               <textarea value={p.bio} onChange={e => setP({ ...p, bio: e.target.value })} placeholder="自由に自己紹介を書いてください"
                 style={{ width: "100%", minHeight: 80, padding: "10px 12px", borderRadius: 8, border: "1px solid #e5e7eb", fontSize: 13, color: "#111", resize: "vertical", outline: "none", boxSizing: "border-box", fontFamily: "inherit", lineHeight: 1.6 }} />
@@ -760,6 +905,7 @@ const seedEvts = evts.map(e => ({ st: "公開中", ...e })).sort(byStart);
 const isPublic = (e) => e.st === "公開中";
 const findGrp = (name) => grpCards.find(g => g.name === name) || grpCards[0];
 const myAdminGrps = () => grpCards.filter(g => (g.admins || []).includes(ME));
+const grpsOf = (userId) => grpCards.filter(g => (g.members || []).includes(userId));
 const seedRsvps = [
   { eventId: 1, userId: 2, answer: "yes" },
   { eventId: 1, userId: 6, answer: "yes" },
@@ -956,7 +1102,7 @@ const Av = ({ u, s = 28 }) => u.av
 function EvtSheet({ e, onClose, onRsvp, rsvps, openGrp }) {
   const g = findGrp(e.g);
   return (
-    <div style={{ position: "absolute", inset: 0, zIndex: 200, display: "flex", flexDirection: "column", borderRadius: 37, overflow: "hidden" }}>
+    <div style={{ position: "absolute", inset: 0, zIndex: 200, display: "flex", flexDirection: "column", overflow: "hidden" }}>
       <div onClick={onClose} style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.4)" }} />
       <div style={{ position: "relative", marginTop: "auto", background: "#fff", borderRadius: "16px 16px 0 0", maxHeight: "82%", overflowY: "auto", scrollbarWidth: "none" }}>
         <div style={{ display: "flex", justifyContent: "center", padding: "10px 0 0", position: "sticky", top: 0, background: "#fff", zIndex: 1 }}>
@@ -1104,6 +1250,36 @@ function CalPage({ go, events, openGrp, addEvent, onOpenEvt }) {
   );
 }
 
+// アプリの外枠。通常は画面いっぱい（PCでは中央に寄せる）、framed のときだけ端末モック。
+function Shell({ framed, children }) {
+  if (!framed) {
+    return (
+      <div style={{ minHeight: "100dvh", background: "#e9e7e2", display: "flex", justifyContent: "center" }}>
+        <div style={{ width: "100%", maxWidth: 480, height: "100dvh", background: "#f7f6f3", position: "relative", overflow: "hidden", boxShadow: "0 0 40px rgba(0,0,0,0.06)" }}>
+          {children}
+        </div>
+      </div>
+    );
+  }
+  return (
+    <div style={{ minHeight: "100vh", background: "linear-gradient(135deg, #e8e6e1 0%, #d4d0c8 100%)", display: "flex", alignItems: "center", justifyContent: "center", padding: "32px 20px", fontFamily: "sans-serif" }}>
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+        <div style={{ fontSize: 12, fontWeight: 600, color: "#999", marginBottom: 12, letterSpacing: "0.08em", textTransform: "uppercase" }}>iPhone 14 — 375 × 720</div>
+        <div style={{
+          width: 375, height: 720,
+          borderRadius: 44, border: "7px solid #1a1a1a",
+          background: "#1a1a1a", overflow: "hidden", position: "relative",
+          boxShadow: "0 24px 80px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.08) inset",
+        }}>
+          <div style={{ position: "absolute", top: 10, left: "50%", transform: "translateX(-50%)", width: 120, height: 28, background: "#000", borderRadius: 20, zIndex: 100 }} />
+          {children}
+          <div style={{ position: "absolute", bottom: 8, left: "50%", transform: "translateX(-50%)", width: 120, height: 4, borderRadius: 2, background: "rgba(255,255,255,0.25)", zIndex: 100 }} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function App() {
   const [page, setPage] = useState("home");
   const [selectedAct, setSelectedAct] = useState(null);
@@ -1111,8 +1287,12 @@ export default function App() {
   const [posts, setPosts] = useState([]);
   const [rsvps, setRsvps] = useState(seedRsvps);
   const [selectedEvt, setSelectedEvt] = useState(null);
+  const [selectedUser, setSelectedUser] = useState(null);
+  const [photos, setPhotos] = useState(prof.phs);
+  const [avatar, setAvatar] = useState(prof.av);
   const [grp, setGrp] = useState("フットサル部");
   const openGrp = (name) => { setGrp(name); setPage("detail"); };
+  const openUser = (id) => { setSelectedUser(id); setPage("member"); };
   const addEvent = (ev) => setEvents([...events, ev].sort(byStart));
   const onRsvp = (eventId, answer) => setRsvps(prev => {
     const rest = prev.filter(r => !(r.eventId === eventId && r.userId === ME));
@@ -1124,37 +1304,31 @@ export default function App() {
     { id: "groups", lb: "ボド部", ic: <UsrI s={22} /> },
     { id: "profile", lb: "プロフィール", ic: <PrI /> },
   ];
-  const on = (id) => page === id || (id === "groups" && (page === "groups" || page === "detail" || page === "admin" || page === "newRecord"));
+  const on = (id) => page === id || (id === "groups" && (page === "groups" || page === "detail" || page === "admin" || page === "newRecord")) || (id === "profile" && (page === "members" || page === "member"));
+
+  // ?frame を付けて開いたときだけ端末モックを表示する（デモ・スクショ用）
+  const framed = typeof window !== "undefined" && window.location.search.includes("frame");
 
   return (
-    <div style={{ minHeight: "100vh", background: "linear-gradient(135deg, #e8e6e1 0%, #d4d0c8 100%)", display: "flex", alignItems: "center", justifyContent: "center", padding: "32px 20px", fontFamily: "sans-serif" }}>
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-        <div style={{ fontSize: 12, fontWeight: 600, color: "#999", marginBottom: 12, letterSpacing: "0.08em", textTransform: "uppercase" }}>iPhone 14 — 375 × 812</div>
-        {/* Phone body */}
-        <div style={{
-          width: 375, height: 720,
-          borderRadius: 44, border: "7px solid #1a1a1a",
-          background: "#1a1a1a", overflow: "hidden", position: "relative",
-          boxShadow: "0 24px 80px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.08) inset",
-        }}>
-          {/* Dynamic Island */}
-          <div style={{ position: "absolute", top: 10, left: "50%", transform: "translateX(-50%)", width: 120, height: 28, background: "#000", borderRadius: 20, zIndex: 100 }} />
-          {/* Screen */}
-          <div style={{ width: "100%", height: "100%", borderRadius: 37, overflow: "hidden", background: "#f7f6f3", display: "flex", flexDirection: "column", fontFamily: "'Noto Sans JP', -apple-system, 'Hiragino Sans', sans-serif", position: "relative" }}>
-            <div style={{ height: 48 }} />
-            <div style={{ background: "#fff", borderBottom: "1px solid #eee", padding: "10px 16px", flexShrink: 0 }}>
+    <Shell framed={framed}>
+      {/* Screen */}
+      <div style={{ width: "100%", height: "100%", borderRadius: framed ? 37 : 0, overflow: "hidden", background: "#f7f6f3", display: "flex", flexDirection: "column", fontFamily: "'Noto Sans JP', -apple-system, 'Hiragino Sans', sans-serif", position: "relative" }}>
+            {framed && <div style={{ height: 48 }} />}
+            <div style={{ background: "#fff", borderBottom: "1px solid #eee", padding: "10px 16px", paddingTop: framed ? 10 : "calc(10px + env(safe-area-inset-top))", flexShrink: 0 }}>
               <span style={{ fontWeight: 800, fontSize: 18, color: A }}>コミュニティ</span>
             </div>
             <div style={{ flex: 1, overflowY: "auto", overflowX: "hidden" }} className="no-scrollbar">
               {page === "calendar" && <CalPage go={setPage} events={events} openGrp={openGrp} addEvent={addEvent} onOpenEvt={setSelectedEvt} />}
       {page === "home" && <HomePage go={setPage} onSelectAct={setSelectedAct} events={events} posts={posts} setPosts={setPosts} openGrp={openGrp} onRsvp={onRsvp} rsvps={rsvps} />}
-              {page === "profile" && <ProfPage />}
+              {page === "profile" && <ProfPage go={setPage} photos={photos} setPhotos={setPhotos} avatar={avatar} setAvatar={setAvatar} />}
+              {page === "members" && <MembersPage go={setPage} openUser={openUser} />}
+              {page === "member" && <MemberPage go={setPage} userId={selectedUser} openGrp={openGrp} />}
               {page === "groups" && <GrpsPage go={setPage} openGrp={openGrp} />}
-              {page === "detail" && <DetPage go={setPage} onSelectAct={setSelectedAct} events={events} grp={grp} onRsvp={onRsvp} rsvps={rsvps} />}
+              {page === "detail" && <DetPage go={setPage} onSelectAct={setSelectedAct} events={events} grp={grp} onRsvp={onRsvp} rsvps={rsvps} openUser={openUser} />}
               {page === "admin" && <AdminPage go={setPage} events={events} setEvents={setEvents} grp={grp} rsvps={rsvps} />}
               {page === "newRecord" && <NewRecordPage go={setPage} />}
             </div>
-            <div style={{ background: "#fff", borderTop: "1px solid #eee", display: "flex", justifyContent: "space-around", padding: "6px 0 20px", flexShrink: 0 }}>
+            <div style={{ background: "#fff", borderTop: "1px solid #eee", display: "flex", justifyContent: "space-around", padding: "6px 0 20px", paddingBottom: framed ? 20 : "calc(10px + env(safe-area-inset-bottom))", flexShrink: 0 }}>
               {nav.map(n => (
                 <button key={n.id} onClick={() => setPage(n.id)}
                   style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 2, background: "none", border: "none", cursor: "pointer", padding: "4px 12px",
@@ -1216,12 +1390,8 @@ export default function App() {
                 </div>
               </div>
             )}
-          </div>
-          {/* Home indicator */}
-          <div style={{ position: "absolute", bottom: 8, left: "50%", transform: "translateX(-50%)", width: 120, height: 4, borderRadius: 2, background: "rgba(255,255,255,0.25)" }} />
-        </div>
       </div>
       <style>{`.no-scrollbar::-webkit-scrollbar { display: none; } .no-scrollbar { scrollbar-width: none; }`}</style>
-    </div>
+    </Shell>
   );
 }
