@@ -79,7 +79,7 @@ export default function App() {
       {page === "home" && <HomePage onSelectAct={openAct} posts={posts} setPosts={setPosts} actMeta={actMeta} setActMeta={setActMeta} onOpenPost={setOpenPostId} events={events} rsvps={rsvps} onRsvp={onRsvp} onOpenEvt={setSelectedEvt} />}
               {page === "profile" && <ProfPage go={setPage} photos={photos} setPhotos={setPhotos} avatar={avatar} setAvatar={setAvatar} mem={mem} events={events} rsvps={rsvps} onOpenEvt={setSelectedEvt} />}
               {page === "members" && <MembersPage go={setPage} openUser={openUser} mem={mem} />}
-              {page === "member" && <MemberPage go={setPage} userId={selectedUser} openGrp={openGrp} mem={mem} />}
+              {page === "member" && <MemberPage go={setPage} userId={selectedUser} openGrp={openGrp} mem={mem} events={events} rsvps={rsvps} onOpenEvt={setSelectedEvt} />}
               {page === "groups" && <GrpsPage go={setPage} openGrp={openGrp} mem={mem} />}
               {page === "detail" && <DetPage go={setPage} onSelectAct={openAct} events={events} grp={grp} onRsvp={onRsvp} rsvps={rsvps} openUser={openUser} mem={mem} toggleJoin={toggleJoin} />}
               {page === "admin" && <AdminPage go={setPage} events={events} setEvents={setEvents} grp={grp} rsvps={rsvps} />}
