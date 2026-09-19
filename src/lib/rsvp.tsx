@@ -1,4 +1,4 @@
-import { findGrp } from "./people";
+import { findGrpRaw } from "./people";
 
 export const isPublic = (e) => e.st === "公開中";
 
@@ -8,9 +8,10 @@ export const answerOf = (rsvps, eventId, userId) => {
 };
 
 export const tally = (rsvps, e) => {
-  const roster = findGrp(e.g).members || [];
-  const of = (a) => roster.filter(u => answerOf(rsvps, e.id, u) === a);
-  const yes = of("yes"), no = of("no");
-  const pending = roster.filter(u => !answerOf(rsvps, e.id, u));
+  const rows = rsvps.filter(r => r.eventId === e.id);
+  const yes = rows.filter(r => r.answer === "yes").map(r => r.userId);
+  const no = rows.filter(r => r.answer === "no").map(r => r.userId);
+  const roster = findGrpRaw(e.g).members || [];
+  const pending = roster.filter(u => !rows.some(r => r.userId === u));
   return { yes, no, pending, roster };
 };

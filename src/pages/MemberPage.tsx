@@ -3,9 +3,9 @@ import { C } from "../theme";
 import { Av } from "../ui/Avatar";
 import { BkI } from "../ui/icons";
 
-export function MemberPage({ go, userId, openGrp }) {
+export function MemberPage({ go, userId, openGrp, mem }) {
   const u = findUser(userId);
-  const gs = grpsOf(u.id);
+  const gs = grpsOf(u.id, mem);
   return (
     <div style={{ padding: "14px 16px", paddingBottom: 20 }}>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14 }}>

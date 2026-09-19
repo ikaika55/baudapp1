@@ -1,9 +1,16 @@
 import { useState } from "react";
-import { prof } from "../data/users";
-import { A, BO, BP, C, IN } from "../theme";
-import { BkI } from "../ui/icons";
+import { ME, prof } from "../data/users";
+import { EvRow } from "../features/events/EvRow";
+import { byStart, fmtDate, isPast, tRange } from "../lib/date";
+import { gColor, grpsOf } from "../lib/people";
+import { answerOf, isPublic } from "../lib/rsvp";
+import { A, BP, C, IN, M } from "../theme";
+import { BkI, CalI, ChI, UsrI } from "../ui/icons";
 
-export function ProfPage({ go, photos, setPhotos, avatar, setAvatar }) {
+export function ProfPage({ go, photos, setPhotos, avatar, setAvatar, mem, events, rsvps, onOpenEvt }) {
+  const joined = events.filter(e => isPublic(e) && answerOf(rsvps, e.id, ME) === "yes");
+  const upcoming = joined.filter(e => !isPast(e)).sort(byStart).slice(0, 3);
+  const attended = joined.filter(isPast).sort((a, b) => byStart(b, a)).slice(0, 3);
   const [editing, setEditing] = useState(false);
   const [p, setP] = useState({
     name: prof.name, kana: prof.kana, bio: prof.bio, hometown: prof.hometown,
@@ -33,6 +40,19 @@ export function ProfPage({ go, photos, setPhotos, avatar, setAvatar }) {
     <div style={{ padding: "14px 16px", paddingBottom: 20 }}>
       {!editing ? (
         <>
+          <div style={{ display: "flex", justifyContent: "flex-end", gap: 8, marginBottom: 10 }}>
+            <button onClick={() => go("members")}
+              style={{ display: "inline-flex", alignItems: "center", gap: 5, padding: "6px 12px", borderRadius: 999, cursor: "pointer",
+                border: "1px solid #e5e7eb", background: "#fff", color: "#666", fontSize: 12, fontWeight: 600 }}>
+              <UsrI s={14} />社員一覧
+            </button>
+            <button onClick={() => setEditing(true)}
+              style={{ display: "inline-flex", alignItems: "center", gap: 5, padding: "6px 12px", borderRadius: 999, cursor: "pointer",
+                border: `1.5px solid ${A}`, background: "#fff", color: A, fontSize: 12, fontWeight: 700 }}>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+              編集
+            </button>
+          </div>
           <div style={{ borderRadius: 14, overflow: "hidden", marginBottom: 16, boxShadow: "0 2px 10px rgba(0,0,0,0.08)", background: "linear-gradient(120deg, #FCE38A 0%, #F9C87B 42%, #F0964A 100%)", position: "relative" }}>
             <span style={{ position: "absolute", top: 9, right: 11, fontSize: 10, fontWeight: 600, color: "rgba(255,255,255,0.95)", letterSpacing: "0.02em" }}>baudroie inc.</span>
 
@@ -65,7 +85,7 @@ export function ProfPage({ go, photos, setPhotos, avatar, setAvatar }) {
 
           <div style={{ ...C, padding: 16, textAlign: "center", marginBottom: 20 }}>
             <div style={{ display: "flex", gap: 6, justifyContent: "center", flexWrap: "wrap", marginBottom: 10 }}>
-              {prof.grps.map((g, i) => (
+              {grpsOf(ME, mem).map((g, i) => (
                 <span key={i} style={{ display: "inline-flex", alignItems: "center", gap: 4, padding: "3px 10px", borderRadius: 999, fontSize: 11, fontWeight: 600, color: "#fff", background: g.color }}>
                   <span style={{ width: 5, height: 5, background: "#fff", borderRadius: "50%", display: "inline-block" }} />{g.name}
                 </span>
@@ -75,9 +95,32 @@ export function ProfPage({ go, photos, setPhotos, avatar, setAvatar }) {
             <div style={{ display: "flex", justifyContent: "center", gap: 6, marginBottom: 12, flexWrap: "wrap" }}>
               <span style={{ display: "inline-flex", alignItems: "center", gap: 4, padding: "3px 10px", borderRadius: 999, background: "#f5f5f5", fontSize: 11, color: "#666" }}>{p.joinedCompany}入社</span>
             </div>
-            <button onClick={() => setEditing(true)} style={BP}>プロフィールを編集</button>
-            <button onClick={() => go("members")} style={{ ...BO, marginTop: 8 }}>社員一覧を見る</button>
           </div>
+          <div style={{ marginBottom: 20 }}>
+            <div style={{ fontSize: 18, fontWeight: 700, color: "#111", marginBottom: 10 }}>参加予定のイベント</div>
+            {upcoming.length === 0
+              ? <div style={{ ...C, padding: "22px 16px", textAlign: "center", color: "#bbb", fontSize: 12 }}>参加予定のイベントはありません</div>
+              : upcoming.map(e => <EvRow key={e.id} e={e} onGo={() => onOpenEvt(e.id)} />)}
+          </div>
+
+          <div style={{ marginBottom: 20 }}>
+            <div style={{ fontSize: 18, fontWeight: 700, color: "#111", marginBottom: 10 }}>参加したイベント</div>
+            {attended.length === 0
+              ? <div style={{ ...C, padding: "22px 16px", textAlign: "center", color: "#bbb", fontSize: 12 }}>まだ参加したイベントはありません</div>
+              : attended.map(e => (
+                  <button key={e.id} onClick={() => onOpenEvt(e.id)}
+                    style={{ ...C, display: "flex", alignItems: "center", gap: 10, padding: 12, marginBottom: 8, border: "none", cursor: "pointer", textAlign: "left", width: "100%" }}>
+                    <span style={{ width: 3, alignSelf: "stretch", borderRadius: 2, background: gColor(e.g), flexShrink: 0 }} />
+                    <span style={{ flex: 1, minWidth: 0 }}>
+                      <span style={{ display: "block", fontSize: 11, color: gColor(e.g), fontWeight: 600 }}>{e.g}</span>
+                      <span style={{ display: "block", fontSize: 13, fontWeight: 700, color: "#111", marginTop: 2 }}>{e.t}</span>
+                      <span style={{ ...M, marginTop: 5 }}><CalI s={12} />{fmtDate(e.start)} {tRange(e)}</span>
+                    </span>
+                    <span style={{ color: "#ddd" }}><ChI /></span>
+                  </button>
+                ))}
+          </div>
+
           <input id="pickPhotos" type="file" accept="image/*" multiple onChange={pickPhotos} style={{ display: "none" }} />
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
             <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>

@@ -1,23 +1,17 @@
 import { useState } from "react";
 import { grpCards } from "../data/groups";
 import { grpN } from "../lib/people";
-import { A, C, M } from "../theme";
+import { C, M } from "../theme";
 import { Cover } from "../ui/Cover";
 import { ChI, UsrI } from "../ui/icons";
 
-export function GrpsPage({ go, openGrp }) {
+export function GrpsPage({ go, openGrp, mem }) {
   const [q, setQ] = useState("");
-  const [cat, setCat] = useState("すべて");
-  const tabs = ["すべて", "スポーツ", "インドア"];
-  const filtered = grpCards.filter(g => {
-    const matchQ = !q || g.name.includes(q) || g.ds.includes(q);
-    const matchCat = cat === "すべて" || g.cat === cat;
-    return matchQ && matchCat;
-  });
+  const filtered = grpCards.filter(g => !q || g.name.includes(q) || g.ds.includes(q));
   return (
     <div style={{ padding: "14px 16px", paddingBottom: 20 }}>
       {/* Search */}
-      <div style={{ position: "relative", marginBottom: 12 }}>
+      <div style={{ position: "relative", marginBottom: 16 }}>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#aaa" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ position: "absolute", left: 12, top: "50%", transform: "translateY(-50%)" }}><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
         <input
           type="text" value={q} onChange={e => setQ(e.target.value)}
@@ -29,17 +23,6 @@ export function GrpsPage({ go, openGrp }) {
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#666" strokeWidth="2.5" strokeLinecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
           </button>
         )}
-      </div>
-      {/* Category tabs */}
-      <div style={{ display: "flex", gap: 6, marginBottom: 16, overflowX: "auto", scrollbarWidth: "none", paddingBottom: 2 }}>
-        {tabs.map(c => (
-          <button key={c} onClick={() => setCat(c)} style={{
-            padding: "7px 16px", borderRadius: 999, border: "none", cursor: "pointer", fontSize: 13, fontWeight: 600, flexShrink: 0,
-            background: cat === c ? A : "#fff",
-            color: cat === c ? "#fff" : "#888",
-            boxShadow: cat === c ? "none" : "0 0 0 1px #e5e7eb",
-          }}>{c}</button>
-        ))}
       </div>
       {/* Results */}
       {filtered.length === 0 ? (
@@ -61,7 +44,7 @@ export function GrpsPage({ go, openGrp }) {
                   <span style={{ fontSize: 16, fontWeight: 700, color: "#111" }}>{g.name}</span><ChI />
                 </div>
                 <div style={{ color: "#888", fontSize: 12, marginBottom: 8, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{g.ds}</div>
-                <span style={{ ...M, fontSize: 12 }}><UsrI s={12} />{grpN(g)}人</span>
+                <span style={{ ...M, fontSize: 12 }}><UsrI s={12} />{grpN(g, mem)}人</span>
               </div>
             </button>
           ))}

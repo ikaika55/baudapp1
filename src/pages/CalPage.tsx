@@ -10,9 +10,11 @@ import { ChI } from "../ui/icons";
 export function CalPage({ go, events, openGrp, addEvent, onOpenEvt }) {
   const [showNew, setShowNew] = useState(false);
   const adminGrps = myAdminGrps();
-  const [ym, setYm] = useState({ y: 2026, m: 4 });
+  const today = new Date();
+  const [ym, setYm] = useState({ y: today.getFullYear(), m: today.getMonth() + 1 });
   const { y: YEAR, m: month } = ym;
-  const [sel, setSel] = useState(null);
+  const [sel, setSel] = useState(today.getDate());
+  const isToday = (d) => d === today.getDate() && month === today.getMonth() + 1 && YEAR === today.getFullYear();
 
   const startDow = new Date(YEAR, month - 1, 1).getDay();
   const nDays = new Date(YEAR, month, 0).getDate();
@@ -59,9 +61,10 @@ export function CalPage({ go, events, openGrp, addEvent, onOpenEvt }) {
                 style={{ background: "none", border: "none", cursor: "pointer", padding: "3px 0 4px", display: "flex", flexDirection: "column", alignItems: "center", gap: 3 }}>
                 <span style={{
                   width: 26, height: 26, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center",
-                  fontSize: 12, fontWeight: isSel ? 700 : 500,
+                  fontSize: 12, fontWeight: isSel || isToday(d) ? 700 : 500,
                   background: isSel ? A : "transparent",
-                  color: isSel ? "#fff" : i % 7 === 0 ? "#d9755f" : i % 7 === 6 ? "#6b8fb5" : "#333",
+                  boxShadow: !isSel && isToday(d) ? `inset 0 0 0 1.5px ${A}` : "none",
+                  color: isSel ? "#fff" : isToday(d) ? A : i % 7 === 0 ? "#d9755f" : i % 7 === 6 ? "#6b8fb5" : "#333",
                 }}>{d}</span>
                 <span style={{ display: "flex", gap: 2, height: 4 }}>
                   {de.slice(0, 3).map(e => (
@@ -77,7 +80,12 @@ export function CalPage({ go, events, openGrp, addEvent, onOpenEvt }) {
       {adminGrps.length === 0 ? null : showNew ? (
         <div style={{ marginBottom: 14 }}>
           <EvtForm options={adminGrps} initDate={sel ? `${ymKey}-${pad2(sel)}` : ""}
-            onSubmit={(ev) => { addEvent({ ...ev, st: "公開中" }); setShowNew(false); }}
+            onSubmit={(ev) => {
+              addEvent({ ...ev, st: "公開中" });
+              const d = dPart(ev.start);
+              if (d) { setYm({ y: +d.slice(0, 4), m: +d.slice(5, 7) }); setSel(+d.slice(8, 10)); }
+              setShowNew(false);
+            }}
             onCancel={() => setShowNew(false)} />
         </div>
       ) : (

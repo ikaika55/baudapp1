@@ -86,7 +86,7 @@ export function AdminPage({ go, events, setEvents, grp, rsvps }) {
           {/* New event form */}
           {showNewEvt && (
             <EvtForm fixedGrp={GRP}
-              onSubmit={(ev) => { setEvents([...events, ev].sort(byStart)); setShowNewEvt(false); }}
+              onSubmit={(ev) => { setEvents([...events, ev].sort(byStart)); setShowNewEvt(false); setTab("events"); }}
               onCancel={() => setShowNewEvt(false)} />
           )}
           {/* Event list */}

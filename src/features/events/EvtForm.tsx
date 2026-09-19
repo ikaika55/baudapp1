@@ -6,8 +6,14 @@ import { TimeSelect } from "../../ui/TimeSelect";
 export function EvtForm({ fixedGrp, options = grpCards, initDate = "", onSubmit, onCancel }) {
   const [f, setF] = useState({ t: "", g: fixedGrp || (options[0] || {}).name || "", d: initDate, d2: initDate, tm: "", te: "", l: "", ds: "", rsvp: "join" });
   const set = (k, v) => setF({ ...f, [k]: v });
+  const missing = [];
+  if (!f.t.trim()) missing.push("イベント名");
+  if (!f.d) missing.push("日付");
+  if (!f.tm) missing.push("開始時刻");
+  const ready = missing.length === 0;
+
   const submit = () => {
-    if (!f.t.trim()) return;
+    if (!ready) return;
     onSubmit({
       id: Date.now(), g: fixedGrp || f.g, t: f.t, l: f.l, ds: f.ds, rsvp: f.rsvp, st: "下書き",
       start: f.d && f.tm ? `${f.d}T${f.tm}` : "",
@@ -89,8 +95,12 @@ export function EvtForm({ fixedGrp, options = grpCards, initDate = "", onSubmit,
       </div>
       <div style={{ display: "flex", gap: 8 }}>
         <button onClick={onCancel} style={{ ...BO, flex: 1 }}>キャンセル</button>
-        <button onClick={submit} style={{ ...BP, flex: 1, opacity: f.t.trim() ? 1 : 0.5 }}>作成</button>
+        <button onClick={submit} disabled={!ready}
+          style={{ ...BP, flex: 1, background: ready ? A : "#e8e6e1", color: ready ? "#fff" : "#aaa", cursor: ready ? "pointer" : "default" }}>作成</button>
       </div>
+      {!ready && (
+        <div style={{ fontSize: 11, color: "#bbb", textAlign: "center", marginTop: -4 }}>{missing.join("・")}を入力すると作成できます</div>
+      )}
     </div>
   );
 }

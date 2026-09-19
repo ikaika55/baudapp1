@@ -13,6 +13,24 @@ export const tRange = (e) => {
 
 export const byStart = (a, b) => (a.start || "").localeCompare(b.start || "");
 
+export const stamp = (d) => {
+  const z = (n) => String(n).padStart(2, "0");
+  return `${d.getFullYear()}-${z(d.getMonth() + 1)}-${z(d.getDate())}T${z(d.getHours())}:${z(d.getMinutes())}`;
+};
+
+export const nowISO = () => stamp(new Date());
+
+export const daysAgoISO = (n) => { const d = new Date(); d.setDate(d.getDate() - n); return stamp(d); };
+
+export const endOf = (e) => e.end || e.start || "";
+
+export const isPast = (e) => endOf(e) < nowISO();
+// 終了から1週間たった予定は「今後の予定」から自動的に消える
+
+export const KEEP_DAYS = 7;
+
+export const stillListed = (e) => endOf(e) >= daysAgoISO(KEEP_DAYS);
+
 export const pad2 = (n) => String(n).padStart(2, "0");
 
 export const WD = ["日", "月", "火", "水", "木", "金", "土"];

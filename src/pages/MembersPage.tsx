@@ -5,7 +5,7 @@ import { C, IN, M } from "../theme";
 import { Av } from "../ui/Avatar";
 import { BkI, ChI } from "../ui/icons";
 
-export function MembersPage({ go, openUser }) {
+export function MembersPage({ go, openUser, mem }) {
   const [q, setQ] = useState("");
   const kw = q.trim();
   const list = users.filter(u => !kw || u.nm.includes(kw) || (u.dept || "").includes(kw));
@@ -32,7 +32,7 @@ export function MembersPage({ go, openUser }) {
               <div style={{ fontSize: 14, fontWeight: 700, color: "#111" }}>{u.nm}{u.id === ME && <span style={{ fontSize: 10, color: "#bbb", marginLeft: 6 }}>自分</span>}</div>
               <div style={{ fontSize: 11, color: "#999", marginTop: 2 }}>{u.dept}</div>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 4, marginTop: 6 }}>
-                {grpsOf(u.id).map(g => (
+                {grpsOf(u.id, mem).map(g => (
                   <span key={g.id} style={{ display: "inline-flex", alignItems: "center", gap: 4, padding: "2px 8px", borderRadius: 999, fontSize: 10, fontWeight: 600, color: "#fff", background: g.color }}>{g.name}</span>
                 ))}
               </div>

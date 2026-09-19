@@ -9,3 +9,5 @@ export const grpCards = [
 ];
 
 export const groups = grpCards.map(({ id, name, members, color }) => ({ id, name, n: members.length, color }));
+
+export const seedMem = () => Object.fromEntries(grpCards.map(g => [g.name, g.members || []]));

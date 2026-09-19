@@ -8,9 +8,11 @@ export const findGrpRaw = (name) => grpCards.find(g => g.name === name) || {};
 
 export const findGrp = (name) => grpCards.find(g => g.name === name) || grpCards[0];
 
-export const grpN = (g) => (g.members || []).length;
+export const rosterOf = (mem, name) => (mem && mem[name]) || (grpCards.find(x => x.name === name) || {}).members || [];
 
-export const grpsOf = (userId) => grpCards.filter(g => (g.members || []).includes(userId));
+export const grpN = (g, mem) => rosterOf(mem, g.name).length;
+
+export const grpsOf = (userId, mem) => grpCards.filter(g => rosterOf(mem, g.name).includes(userId));
 
 export const isAdmin = (grpName, userId) => (findGrpRaw(grpName).admins || []).includes(userId);
 
